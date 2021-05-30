@@ -15,10 +15,19 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"menus": {
+			"view/item/context": [
+				{
+					"command": "customProfiles.launch",
+					"when": "view == customProfiles && viewItem == customProfile"
+				}
+			]
+		},
 		"commands": [
 			{
-				"command": "vscode-manager.helloWorld",
-				"title": "Hello World"
+				"command": "customProfiles.launch",
+				"title": "Launch Custom Profile",
+				"enablement": "view == customProfiles && viewItem == customProfile"
 			}
 		],
 		"views": {

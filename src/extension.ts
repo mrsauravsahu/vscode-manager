@@ -6,7 +6,7 @@ import { CustomProfilesProvider } from './custom-profile-tree';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	vscode.window.registerTreeDataProvider('customProfiles', new CustomProfilesProvider());
+	vscode.window.registerTreeDataProvider('customProfiles', new CustomProfilesProvider(context));
 }
 
 // this method is called when your extension is deactivated

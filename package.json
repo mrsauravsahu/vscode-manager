@@ -1,6 +1,7 @@
 {
 	"name": "vscode-manager",
-	"displayName": "vscode-manager",
+	"displayName": "VSCode Manager",
+	"publisher": "Saurav Sahu",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
 	"version": "0.0.1",
 	"engines": {
@@ -10,7 +11,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vscode-manager.helloWorld"
+		"onView:customProfiles"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -19,7 +20,24 @@
 				"command": "vscode-manager.helloWorld",
 				"title": "Hello World"
 			}
-		]
+		],
+		"views": {
+			"customProfilesExplorer": [
+				{
+					"id": "customProfiles",
+					"name": "All Profiles"
+				}
+			]
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "customProfilesExplorer",
+					"title": "Custom Profiles Explorer",
+					"icon": "resources/vscode-icon.svg"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

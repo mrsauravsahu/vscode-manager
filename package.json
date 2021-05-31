@@ -26,7 +26,7 @@
 		"commands": [
 			{
 				"command": "customProfiles.launch",
-				"title": "Launch Custom Profile",
+				"title": "Launch",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			}
 		],

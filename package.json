@@ -97,7 +97,8 @@
 			"customProfilesExplorer": [
 				{
 					"id": "customProfiles",
-					"name": "All Profiles"
+					"name": "All Profiles",
+					"contextualTitle": "Custom Profiles"
 				}
 			]
 		},

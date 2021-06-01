@@ -2,9 +2,11 @@ import * as vscode from 'vscode';
 import * as constants from './constants';
 import * as fs from 'fs';
 import { CustomProfile } from './models/custom-profile';
+import { CustomProfileService } from './services/custom-profile.service';
 
 export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomProfile> {
-  constructor(private context: vscode.ExtensionContext) {
+  constructor(private context: vscode.ExtensionContext,
+    private customProfilesService: CustomProfileService) {
     this._onDidChangeTreeData = new vscode.EventEmitter<CustomProfile | undefined | null | void>();
     this.onDidChangeTreeData = this._onDidChangeTreeData.event;
   }
@@ -20,23 +22,6 @@ export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomPro
     return element;
   }
   getChildren(element?: CustomProfile): vscode.ProviderResult<CustomProfile[]> {
-    const { rootStoragePath } = constants;
-
-    // check if dir exists 
-    var rootExists = fs.existsSync(rootStoragePath);
-
-    if (!rootExists) { fs.mkdirSync(rootStoragePath); }
-
-    const rootItems = fs.readdirSync(rootStoragePath, { withFileTypes: true });
-    const profileNames = rootItems.filter(item => {
-      return item.isDirectory();
-    })
-      .map(item => item.name);
-
-    const profileList = [
-      ...profileNames.map(profileName => new CustomProfile(`${constants.app}:models.customProfile.${profileName}`, profileName, '', vscode.TreeItemCollapsibleState.None))
-    ];
-
-    return profileList;
+    return this.customProfilesService.getAll();
   }
 }

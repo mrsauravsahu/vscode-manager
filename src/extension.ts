@@ -7,15 +7,24 @@ import * as path from 'path';
 
 import { CustomProfilesProvider } from './custom-profile-tree';
 import * as constants from './constants';
+import { CustomProfileService } from './services/custom-profile.service';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 	// TODO: Make rootPath cross platform
 	const { rootStoragePath } = constants;
-	const customProfilesProvider = new CustomProfilesProvider(context);
+	const customProfileService = new CustomProfileService();
+	const customProfilesProvider = new CustomProfilesProvider(context, customProfileService);
 
 	vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider);
+	const customProfilesExplorer = vscode.window.createTreeView('customProfiles', {
+		treeDataProvider: customProfilesProvider,
+	});
+
+	if (customProfileService.getAll().length === 0) {
+		customProfilesExplorer.message = 'No custom profiles found. Create one now! 😃';
+	}
 
 	vscode.commands.registerCommand('customProfiles.launch', (...args) => {
 		// vscode.window.showInformationMessage(JSON.stringify(args));

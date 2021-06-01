@@ -27,10 +27,6 @@
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
-					"command": "customProfiles.clone",
-					"when": "view == customProfiles && viewItem == customProfile"
-				},
-				{
 					"command": "customProfiles.delete",
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
@@ -60,11 +56,6 @@
 			{
 				"command": "customProfiles.launch",
 				"title": "Launch",
-				"enablement": "view == customProfiles && viewItem == customProfile"
-			},
-			{
-				"command": "customProfiles.clone",
-				"title": "Clone",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{

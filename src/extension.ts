@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	if (customProfileService.getAll().length === 0) {
-		customProfilesExplorer.message = 'No custom profiles found. Create one now! 😃';
+		customProfilesExplorer.message = constants.strings.noProfiles;
 	}
 
 	vscode.commands.registerCommand('customProfiles.launch', (...args) => {
@@ -50,6 +50,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand('customProfiles.refreshEntry', () => {
 		customProfilesProvider.refresh();
+
+		if (customProfileService.getAll().length === 0) {
+			customProfilesExplorer.message = constants.strings.noProfiles;
+		}
+		else {
+			customProfilesExplorer.message = undefined;
+		}
 	});
 
 	vscode.commands.registerCommand('customProfiles.delete', async (...args) => {
@@ -65,6 +72,10 @@ export function activate(context: vscode.ExtensionContext) {
 			const profilePath = path.join(constants.rootStoragePath, name);
 			process.exec(`rm -r ${profilePath}`);
 			vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`);
+
+			if (customProfileService.getAll().length === 0) {
+				customProfilesExplorer.message = constants.strings.noProfiles;
+			}
 		}
 	});
 
@@ -93,6 +104,13 @@ export function activate(context: vscode.ExtensionContext) {
 
 		vscode.env.clipboard.writeText(aliasCommand);
 		vscode.window.showInformationMessage('Copied alias command to the clipboard');
+	});
+
+	vscode.commands.registerCommand("customProfiles.createProfile", () => {
+		const newProfileName = 'lel';
+		const newProfilePath = `${rootStoragePath}/${newProfileName}`;
+
+		process.exec(`mkdir '${newProfilePath}'`);
 	});
 }
 

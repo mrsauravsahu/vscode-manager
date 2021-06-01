@@ -15,3 +15,7 @@ export const models = {
 export const profiles = {
   default: 'clean-slate'
 };
+
+export const strings = {
+  noProfiles: 'No custom profiles found. Create one now.'
+};

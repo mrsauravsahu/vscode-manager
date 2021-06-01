@@ -32,6 +32,10 @@
 				{
 					"command": "customProfiles.rename",
 					"when": "view == customProfiles && viewItem == customProfile"
+				},
+				{
+					"command": "customProfiles.copyAlias",
+					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
 			"view/title": [
@@ -61,6 +65,11 @@
 			{
 				"command": "customProfiles.rename",
 				"title": "Rename",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "customProfiles.copyAlias",
+				"title": "Copy Alias",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{

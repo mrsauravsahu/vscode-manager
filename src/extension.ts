@@ -117,6 +117,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 		process.execSync(`mkdir '${newProfilePath}'`);
 		process.execSync(`mkdir -p '${newProfilePath}/data/User'`);
+		process.execSync(`mkdir '${newProfilePath}/extensions'`);
 		fs.writeFileSync(`${newProfilePath}/data/User/settings.json`, `{ "window.title": "${newProfileName} — \${activeEditorShort}\${separator}\${rootName}" }`, { encoding: 'utf-8' });
 	});
 }

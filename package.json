@@ -79,7 +79,7 @@
 			},
 			{
 				"command": "customProfiles.copyAlias",
-				"title": "Copy Alias",
+				"title": "Copy Alias Command",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{

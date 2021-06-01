@@ -24,7 +24,6 @@ export function activate(context: vscode.ExtensionContext) {
 		if (name === 'default') { process.exec('code -n'); }
 		else {
 			const launchCommand = `code --user-data-dir='${rootStoragePath}/${name}/data' --extensions-dir='${rootStoragePath}/${name}/extensions' -n`;
-			vscode.window.showInformationMessage(launchCommand);
 			process.exec(launchCommand);
 		}
 	});

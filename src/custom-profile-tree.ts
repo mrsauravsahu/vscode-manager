@@ -4,9 +4,18 @@ import * as fs from 'fs';
 import { CustomProfile } from './models/custom-profile';
 
 export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomProfile> {
-  constructor(private context: vscode.ExtensionContext) { }
+  constructor(private context: vscode.ExtensionContext) {
+    this._onDidChangeTreeData = new vscode.EventEmitter<CustomProfile | undefined | null | void>();
+    this.onDidChangeTreeData = this._onDidChangeTreeData.event;
+  }
 
-  onDidChangeTreeData?: vscode.Event<void | CustomProfile | null | undefined> | undefined;
+  private _onDidChangeTreeData: vscode.EventEmitter<CustomProfile | undefined | null | void>;
+  readonly onDidChangeTreeData: vscode.Event<CustomProfile | undefined | null | void>;
+
+  refresh(): void {
+    this._onDidChangeTreeData.fire();
+  }
+
   getTreeItem(element: CustomProfile): vscode.TreeItem | Thenable<vscode.TreeItem> {
     return element;
   }

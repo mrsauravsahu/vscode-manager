@@ -25,6 +25,13 @@
 					"command": "customProfiles.clone",
 					"when": "view == customProfiles && viewItem == customProfile"
 				}
+			],
+			"view/title": [
+				{
+					"command": "customProfiles.refreshEntry",
+					"when": "view == customProfiles",
+					"group": "navigation"
+				}
 			]
 		},
 		"commands": [
@@ -37,6 +44,11 @@
 				"command": "customProfiles.clone",
 				"title": "Clone",
 				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "customProfiles.refreshEntry",
+				"title": "Refresh",
+				"icon": "resources/refresh.svg"
 			}
 		],
 		"views": {

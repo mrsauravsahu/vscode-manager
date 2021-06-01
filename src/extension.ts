@@ -7,33 +7,38 @@ import * as process from 'child_process';
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	vscode.window.registerTreeDataProvider('customProfiles', new CustomProfilesProvider(context));
+	// TODO: Make rootPath cross platform
+	const rootStoragePath = "~/.config/vscode-profiles";
+	const customProfilesProvider = new CustomProfilesProvider(context);
+
+	vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider);
 
 	vscode.commands.registerCommand('customProfiles.launch', (...args) => {
 		// vscode.window.showInformationMessage(JSON.stringify(args));
 		const { name } = args[0];
-		const rootPath = context.globalStorageUri.path;
+
 		if (name === 'default') { process.exec('code -n'); }
 		else {
-			const launchCommand = `code --user-data-dir='${rootPath}/${name}/data' --extensions-dir='${rootPath}/${name}/extensions' -n`;
+			const launchCommand = `code --user-data-dir='${rootStoragePath}/${name}/data' --extensions-dir='${rootStoragePath}/${name}/extensions' -n`;
 			vscode.window.showInformationMessage(launchCommand);
 			process.exec(launchCommand);
 		}
 	});
 
 	vscode.commands.registerCommand('customProfiles.clone', (...args) => {
-
 		const { name } = args[0];
-		const rootPath = context.globalStorageUri.path;
 
-		const clonedProfilePath = `${rootPath}/${name}-copy`;
+		const clonedProfilePath = `${rootStoragePath}/${name}-copy`;
 		vscode.window.showInformationMessage(clonedProfilePath);
 
 		process.exec(`mkdir '${clonedProfilePath}'`);
 
-		process.exec(`open ${clonedProfilePath}`);
-
+		customProfilesProvider.refresh();
 		vscode.window.showInformationMessage(`Cloned profile '${name}' to '${name}-copy'`);
+	});
+
+	vscode.commands.registerCommand('customProfiles.refreshEntry', () => {
+		customProfilesProvider.refresh();
 	});
 }
 

@@ -48,6 +48,11 @@
 					"command": "customProfiles.refreshEntry",
 					"when": "view == customProfiles",
 					"group": "navigation"
+				},
+				{
+					"command": "customProfiles.createProfile",
+					"when": "view == customProfiles",
+					"group": "navigation"
 				}
 			]
 		},
@@ -81,6 +86,11 @@
 				"command": "customProfiles.refreshEntry",
 				"title": "Refresh",
 				"icon": "$(extensions-refresh)"
+			},
+			{
+				"command": "customProfiles.createProfile",
+				"title": "Create Profile",
+				"icon": "$(search-new-editor)"
 			}
 		],
 		"views": {

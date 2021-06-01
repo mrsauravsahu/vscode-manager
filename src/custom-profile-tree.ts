@@ -34,7 +34,6 @@ export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomPro
       .map(item => item.name);
 
     const profileList = [
-      new CustomProfile(`${constants.app}:models.customProfile.default`, constants.profiles.default, '', vscode.TreeItemCollapsibleState.None),
       ...profileNames.map(profileName => new CustomProfile(`${constants.app}:models.customProfile.${profileName}`, profileName, '', vscode.TreeItemCollapsibleState.None))
     ];
 

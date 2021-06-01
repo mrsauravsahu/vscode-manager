@@ -2,6 +2,9 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import * as process from 'child_process';
+import * as fs from 'fs';
+import * as path from 'path';
+
 import { CustomProfilesProvider } from './custom-profile-tree';
 import * as constants from './constants';
 
@@ -39,6 +42,22 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand('customProfiles.refreshEntry', () => {
 		customProfilesProvider.refresh();
+	});
+
+	vscode.commands.registerCommand('customProfiles.delete', async (...args) => {
+		const { name } = args[0];
+		if (name === 'default') {
+			vscode.window.showErrorMessage('Cannot delete the default profile');
+			return;
+		}
+
+		const confirmation = await vscode.window.showInformationMessage('Are you sure you want to delete this profile?', 'Yes', 'Cancel');
+
+		if (confirmation === 'Yes') {
+			const profilePath = path.join(constants.rootStoragePath, name);
+			process.exec(`rm -r ${profilePath}`);
+			vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`);
+		}
 	});
 }
 

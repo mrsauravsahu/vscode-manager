@@ -24,6 +24,10 @@
 				{
 					"command": "customProfiles.clone",
 					"when": "view == customProfiles && viewItem == customProfile"
+				},
+				{
+					"command": "customProfiles.delete",
+					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
 			"view/title": [
@@ -43,6 +47,11 @@
 			{
 				"command": "customProfiles.clone",
 				"title": "Clone",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "customProfiles.delete",
+				"title": "Delete",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{

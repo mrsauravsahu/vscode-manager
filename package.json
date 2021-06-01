@@ -28,6 +28,10 @@
 				{
 					"command": "customProfiles.delete",
 					"when": "view == customProfiles && viewItem == customProfile"
+				},
+				{
+					"command": "customProfiles.rename",
+					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
 			"view/title": [
@@ -52,6 +56,11 @@
 			{
 				"command": "customProfiles.delete",
 				"title": "Delete",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "customProfiles.rename",
+				"title": "Rename",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{

@@ -4,6 +4,10 @@
 	"publisher": "mrsauravsahu",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
 	"version": "0.0.1",
+	"repository": {
+		"url": "https://github.com/mrsauravsahu/vscode-manager",
+		"type": "git"
+	},
 	"engines": {
 		"vscode": "^1.56.0"
 	},

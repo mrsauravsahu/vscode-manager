@@ -11,3 +11,7 @@ export const commands = {
 export const models = {
   profile: `${app}.models.profile`
 };
+
+export const profiles = {
+  default: 'clean-slate'
+};

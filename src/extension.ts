@@ -45,7 +45,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand('customProfiles.delete', async (...args) => {
 		const { name } = args[0];
-		if (name === 'default') {
+		if (name === constants.profiles.default) {
 			vscode.window.showErrorMessage('Cannot delete the default profile');
 			return;
 		}

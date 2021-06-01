@@ -1,7 +1,7 @@
 {
 	"name": "vscode-manager",
 	"displayName": "VSCode Manager",
-	"publisher": "Saurav Sahu",
+	"publisher": "mrsauravsahu",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
 	"version": "0.0.1",
 	"engines": {

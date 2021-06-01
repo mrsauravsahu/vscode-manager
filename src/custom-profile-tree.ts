@@ -20,14 +20,14 @@ export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomPro
     return element;
   }
   getChildren(element?: CustomProfile): vscode.ProviderResult<CustomProfile[]> {
-    const rootPath = this.context.globalStorageUri.path;
+    const { rootStoragePath } = constants;
 
     // check if dir exists 
-    var rootExists = fs.existsSync(rootPath);
+    var rootExists = fs.existsSync(rootStoragePath);
 
-    if (!rootExists) { fs.mkdirSync(rootPath); }
+    if (!rootExists) { fs.mkdirSync(rootStoragePath); }
 
-    const rootItems = fs.readdirSync(rootPath, { withFileTypes: true });
+    const rootItems = fs.readdirSync(rootStoragePath, { withFileTypes: true });
     const profileNames = rootItems.filter(item => {
       return item.isDirectory();
     })

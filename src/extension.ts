@@ -1,14 +1,15 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { CustomProfilesProvider } from './custom-profile-tree';
 import * as process from 'child_process';
+import { CustomProfilesProvider } from './custom-profile-tree';
+import * as constants from './constants';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
 	// TODO: Make rootPath cross platform
-	const rootStoragePath = "~/.config/vscode-profiles";
+	const { rootStoragePath } = constants;
 	const customProfilesProvider = new CustomProfilesProvider(context);
 
 	vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider);
@@ -29,7 +30,6 @@ export function activate(context: vscode.ExtensionContext) {
 		const { name } = args[0];
 
 		const clonedProfilePath = `${rootStoragePath}/${name}-copy`;
-		vscode.window.showInformationMessage(clonedProfilePath);
 
 		process.exec(`mkdir '${clonedProfilePath}'`);
 

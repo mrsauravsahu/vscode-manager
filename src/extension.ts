@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import * as process from 'child_process';
 import * as fs from 'fs';
 import * as path from 'path';
+import { uniqueNamesGenerator, adjectives, animals } from 'unique-names-generator';
 
 import { CustomProfilesProvider } from './custom-profile-tree';
 import * as constants from './constants';
@@ -107,7 +108,11 @@ export function activate(context: vscode.ExtensionContext) {
 	});
 
 	vscode.commands.registerCommand("customProfiles.createProfile", () => {
-		const newProfileName = 'lel';
+		const newProfileName = uniqueNamesGenerator({
+			dictionaries: [adjectives, animals],
+			separator: '-'
+		});
+
 		const newProfilePath = `${rootStoragePath}/${newProfileName}`;
 
 		process.exec(`mkdir '${newProfilePath}'`);

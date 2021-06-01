@@ -17,5 +17,5 @@ export const profiles = {
 };
 
 export const strings = {
-  noProfiles: 'No custom profiles found. Create one now.'
+  noProfiles: 'No custom profiles found... Let\'s create one now.'
 };

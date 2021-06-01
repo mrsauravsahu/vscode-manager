@@ -80,7 +80,7 @@
 			{
 				"command": "customProfiles.refreshEntry",
 				"title": "Refresh",
-				"icon": "resources/refresh.svg"
+				"icon": "$(extensions-refresh)"
 			}
 		],
 		"views": {

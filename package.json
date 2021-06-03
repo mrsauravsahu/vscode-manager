@@ -24,7 +24,7 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"when": "resourceLangId == json",
+					"when": "resourceLangId == json && resourceFilename =~ /profile.json$/ && resourceDirname =~ /.vscode$/",
 					"command": "customProfiles.launch",
 					"group": "customProfiles"
 				}

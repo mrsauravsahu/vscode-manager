@@ -4,7 +4,7 @@
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"repository": {
 		"url": "https://github.com/mrsauravsahu/vscode-manager",
 		"type": "git"
@@ -71,6 +71,11 @@
 			{
 				"command": "customProfiles.copyAlias",
 				"title": "Copy Alias Command",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "customProfiles.commands.selectProfile",
+				"title": "Select Custom Profile",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{

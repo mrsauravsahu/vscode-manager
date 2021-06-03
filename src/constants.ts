@@ -5,7 +5,8 @@ export const app = 'vscode-manager';
 export const rootStoragePath = `${os.homedir()}/.config/${app}`;
 
 export const commands = {
-  launchProfile: `${app}.commands.launchProfile`
+  launchProfile: `${app}.commands.launchProfile`,
+  selectProfile: `${app}.commands.selectProfile`
 };
 
 export const models = {

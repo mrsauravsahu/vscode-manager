@@ -9,6 +9,7 @@ import { uniqueNamesGenerator, adjectives, animals } from 'unique-names-generato
 import { CustomProfilesProvider } from './custom-profile-tree';
 import * as constants from './constants';
 import { CustomProfileService } from './services/custom-profile.service';
+import { CustomProfile } from './models/custom-profile';
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -27,8 +28,36 @@ export function activate(context: vscode.ExtensionContext) {
 		customProfilesExplorer.message = constants.strings.noProfiles;
 	}
 
+	const myProvider = new class implements vscode.TextDocumentContentProvider {
+
+		// emitter and its event
+		onDidChangeEmitter = new vscode.EventEmitter<vscode.Uri>();
+		onDidChange = this.onDidChangeEmitter.event;
+
+		provideTextDocumentContent(uri: vscode.Uri): string {
+			const profileName = uri.path.split('.')[0];
+			return customProfileService.generateProfilJson(profileName);
+		}
+	};
+
+	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.app, myProvider));
+
+	vscode.commands.registerCommand(constants.commands.selectProfile, async (item: CustomProfile) => {
+		vscode.window.withProgress({
+			location: vscode.ProgressLocation.Notification,
+			title: "Generating Profile Details",
+			cancellable: false
+		}, async (progress) => {
+			progress.report({ increment: 10 });
+
+			const uri = vscode.Uri.parse(`${constants.app}:${item.name}.profile.json`);
+			const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
+			progress.report({ increment: 50, message: "generating profile detail file..." });
+			await vscode.window.showTextDocument(doc, { preview: false });
+		});
+	});
+
 	vscode.commands.registerCommand('customProfiles.launch', (...args) => {
-		// vscode.window.showInformationMessage(JSON.stringify(args));
 		const { name } = args[0];
 
 		if (name === 'default') { process.exec('code -n'); }

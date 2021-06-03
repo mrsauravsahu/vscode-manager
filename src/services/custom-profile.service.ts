@@ -39,12 +39,12 @@ export class CustomProfileService {
     return profileList;
   }
 
-  generateProfileJson(profileName: string): string {
+  async generateProfileJson(profileName: string): Promise<string> {
     const userSettingsPath = `${constants.rootStoragePath}/${profileName}/data/User/settings.json`;
 
     let userSettingsString = '{}';
     if (fs.existsSync(userSettingsPath)) {
-      userSettingsString = fs.readFileSync(userSettingsPath, { encoding: 'utf-8' });
+      userSettingsString = await fs.promises.readFile(userSettingsPath, { encoding: 'utf-8' });
     }
 
     // Get user settings

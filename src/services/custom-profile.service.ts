@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
-import * as cp from 'child_process';
+import * as shelljs from 'shelljs';
 import * as constants from '../constants';
 import { CustomProfile } from '../models/custom-profile';
 
@@ -54,7 +54,7 @@ export class CustomProfileService {
     } catch (_) { }
 
     // Get extensions
-    const getExtensionsCommandOutput = cp.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
+    const getExtensionsCommandOutput = shelljs.exec(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
     const extensions = getExtensionsCommandOutput
       .toString()
       .trim()

@@ -39,7 +39,7 @@ export class CustomProfileService {
     return profileList;
   }
 
-  generateProfilJson(profileName: string): string {
+  generateProfileJson(profileName: string): string {
     const userSettingsPath = `${constants.rootStoragePath}/${profileName}/data/User/settings.json`;
 
     let userSettingsString = '{}';

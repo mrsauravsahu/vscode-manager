@@ -54,8 +54,12 @@ export class CustomProfileService {
     } catch (_) { }
 
     // Get extensions
-    const result = cp.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
-    const extensions = result.toString().trim().split(/[\n\r\n]/)
+    const getExtensionsCommandOutput = cp.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
+    const extensions = getExtensionsCommandOutput
+      .toString()
+      .trim()
+      .split(/[\n\r\n]/)
+      .filter(p => p.trim() !== '')
 
 
     const profile = {

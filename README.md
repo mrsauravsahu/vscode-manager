@@ -1,5 +1,6 @@
 # vscode-manager 
 **Manage multiple VSCode isolated instances with ease 😎**
+
 ![](https://vsmarketplacebadge.apphb.com/version-short/mrsauravsahu.vscode-manager.svg?color=blue&subject=VSCode%20MarketPlace)
 
 VSCode Manager helps you manage multiple isolated VSCode instances with separate user settings and extensions. The extension is available on the Marketplace - [Install Now](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).

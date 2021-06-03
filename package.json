@@ -137,6 +137,7 @@
 		"vscode-test": "^1.5.0"
 	},
 	"dependencies": {
+		"shelljs": "^0.8.4",
 		"unique-names-generator": "^4.5.0"
 	}
 }

@@ -16,11 +16,19 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onView:customProfiles"
+		"onView:customProfiles",
+		"workspaceContains:**/.vscode/profile.json"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"menus": {
+			"explorer/context": [
+				{
+					"when": "resourceLangId == json && resourceFilename =~ /profile.json$/ && resourceDirname =~ /.vscode$/",
+					"command": "customProfiles.launch",
+					"group": "customProfiles"
+				}
+			],
 			"view/item/context": [
 				{
 					"command": "customProfiles.launch",
@@ -55,8 +63,7 @@
 		"commands": [
 			{
 				"command": "customProfiles.launch",
-				"title": "Launch",
-				"enablement": "view == customProfiles && viewItem == customProfile"
+				"title": "Launch Custom Profile"
 			},
 			{
 				"command": "customProfiles.delete",

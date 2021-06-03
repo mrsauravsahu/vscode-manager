@@ -43,10 +43,18 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.app, myProvider));
 
 	vscode.commands.registerCommand(constants.commands.selectProfile, async (item: CustomProfile) => {
-		// TODO: Show progress bar
-		const uri = vscode.Uri.parse(`${constants.app}:${item.name}.profile.json`);
-		const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
-		await vscode.window.showTextDocument(doc, { preview: false });
+		vscode.window.withProgress({
+			location: vscode.ProgressLocation.Notification,
+			title: "Generating Profile Details",
+			cancellable: false
+		}, async (progress) => {
+			progress.report({ increment: 10 });
+
+			const uri = vscode.Uri.parse(`${constants.app}:${item.name}.profile.json`);
+			const doc = await vscode.workspace.openTextDocument(uri); // calls back into the provider
+			progress.report({ increment: 50, message: "generating profile detail file..." });
+			await vscode.window.showTextDocument(doc, { preview: false });
+		});
 	});
 
 	vscode.commands.registerCommand('customProfiles.launch', (...args) => {

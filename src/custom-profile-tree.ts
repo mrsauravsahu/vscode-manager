@@ -21,6 +21,7 @@ export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomPro
   getTreeItem(element: CustomProfile): vscode.TreeItem | Thenable<vscode.TreeItem> {
     return element;
   }
+
   getChildren(element?: CustomProfile): vscode.ProviderResult<CustomProfile[]> {
     return this.customProfilesService.getAll();
   }

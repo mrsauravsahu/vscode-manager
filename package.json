@@ -74,6 +74,11 @@
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
+				"command": "customProfiles.commands.selectProfile",
+				"title": "Select Custom Profile",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
 				"command": "customProfiles.refreshEntry",
 				"title": "Refresh",
 				"icon": "$(extensions-refresh)"

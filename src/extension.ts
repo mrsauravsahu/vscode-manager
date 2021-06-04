@@ -4,13 +4,13 @@ import * as vscode from 'vscode'
 import * as process from 'child_process'
 import * as fs from 'fs'
 import * as path from 'path'
-import { uniqueNamesGenerator, adjectives, animals } from 'unique-names-generator'
 
 import { CustomProfilesProvider } from './custom-profile-tree'
 import * as constants from './constants'
 import { CustomProfileService } from './services/custom-profile.service'
 import { CustomProfile } from './models/custom-profile'
 import { CustomProfileDetails } from './types'
+import { createProfileCommandHandler } from './commands/create-profile'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -221,29 +221,10 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Copied alias command to the clipboard')
 	})
 
-	vscode.commands.registerCommand("customProfiles.createProfile", () => {
-		const newProfileName = uniqueNamesGenerator({
-			dictionaries: [adjectives, animals],
-			separator: '-'
-		})
-
-		const newProfilePath = `${rootStoragePath}/${newProfileName}`
-
-		process.execSync(`mkdir '${newProfilePath}'`)
-		process.execSync(`mkdir -p '${newProfilePath}/data/User'`)
-		process.execSync(`mkdir '${newProfilePath}/extensions'`)
-		fs.writeFileSync(`${newProfilePath}/data/User/settings.json`, `{ "window.title": "${newProfileName} — \${activeEditorShort}\${separator}\${rootName}" }`, { encoding: 'utf-8' })
-
-		customProfilesProvider.refresh()
-		if (customProfileService.getAll().length === 0) {
-			customProfilesExplorer.message = constants.strings.noProfiles
-		}
-		else {
-			customProfilesExplorer.message = undefined
-		}
-
-		vscode.window.showInformationMessage(`Created new custom profile: '${newProfileName}'`)
-	})
+	vscode.commands.registerCommand(
+		constants.commands.createProfile,
+		createProfileCommandHandler
+	)
 }
 
 // this method is called when your extension is deactivated

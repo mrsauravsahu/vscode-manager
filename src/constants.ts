@@ -6,7 +6,8 @@ export const rootStoragePath = `${os.homedir()}/.config/${app}`
 
 export const commands = {
   launchProfile: `${app}.commands.launchProfile`,
-  selectProfile: `${app}.commands.selectProfile`
+  selectProfile: `${app}.commands.selectProfile`,
+  createProfile: `${app}.commands.createProfile`
 }
 
 export const models = {

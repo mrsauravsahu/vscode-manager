@@ -58,8 +58,8 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 	});
 
-	vscode.commands.registerCommand('customProfiles.launch', (arg: CustomProfile | { path: string }) => {
-		vscode.window.withProgress({
+	vscode.commands.registerCommand('customProfiles.launch', async (arg: CustomProfile | { path: string }) => {
+		await vscode.window.withProgress({
 			location: vscode.ProgressLocation.Notification,
 			title: "Creating Custom Profile",
 			cancellable: false
@@ -107,8 +107,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 				if (!profileExists) {
 					vscode.window.showInformationMessage('The selected profile does not exist. Creating it now.');
-
-
 
 					progress.report({ increment: 10, message: 'creating Custom Profile folder...' });
 					fs.mkdirSync(`${rootStoragePath}/${profileName}`);

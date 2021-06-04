@@ -3,11 +3,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as process from 'child_process'
 
-import { commands, rootStoragePath, strings } from "../constants";
-import { Command, CommandHandler } from "../types";
-import { CustomProfileService } from '../services/custom-profile.service';
-import { CustomProfilesProvider } from '../custom-profile-tree';
-import { CustomProfile } from '../models/custom-profile';
+import { rootStoragePath, strings } from "../constants"
+import { CommandHandler } from "../types"
 
 export const createProfileCommandHandler: CommandHandler = ({ provider, service, treeView }) => () => {
     const newProfileName = uniqueNamesGenerator({

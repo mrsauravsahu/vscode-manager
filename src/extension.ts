@@ -10,7 +10,7 @@ import * as constants from './constants'
 import { CustomProfileService } from './services/custom-profile.service'
 import { CustomProfile } from './models/custom-profile'
 import { CustomProfileDetails } from './types'
-import { createProfileCommandHandler } from './commands/create-profile'
+import { commands } from './commands'
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -221,10 +221,19 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Copied alias command to the clipboard')
 	})
 
-	vscode.commands.registerCommand(
-		constants.commands.createProfile,
-		createProfileCommandHandler
-	)
+	// Register commands
+	commands.forEach(handler => {
+		vscode.commands.registerCommand(
+			constants.commands.createProfile,
+			handler({
+				context,
+				provider: customProfilesProvider,
+				service: customProfileService,
+				treeView: customProfilesExplorer
+			})
+		)
+	})
+
 }
 
 // this method is called when your extension is deactivated

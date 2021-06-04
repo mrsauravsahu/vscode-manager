@@ -54,7 +54,7 @@
 					"group": "navigation"
 				},
 				{
-					"command": "customProfiles.createProfile",
+					"command": "vscode-manager.commands.createProfile",
 					"when": "view == customProfiles",
 					"group": "navigation"
 				}
@@ -91,7 +91,7 @@
 				"icon": "$(extensions-refresh)"
 			},
 			{
-				"command": "customProfiles.createProfile",
+				"command": "vscode-manager.commands.createProfile",
 				"title": "Create Profile",
 				"icon": "$(search-new-editor)"
 			}

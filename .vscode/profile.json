@@ -1,0 +1,20 @@
+{
+    "name": "vscode-manager",
+    "userSettings": {
+        "window.title": "vscode-manager — ${activeEditorShort}${separator}${rootName}",
+        "editor.fontFamily": "'Cascadia Code PL', Menlo, Monaco, 'Courier New', monospace",
+        "editor.fontLigatures": true,
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.colorTheme": "Horizon Bold",
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "window.zoomLevel": 2
+    },
+    "extensions": [
+        "dbaeumer.vscode-eslint",
+        "Gruntfuggly.todo-tree",
+        "jolaleye.horizon-theme-vscode",
+        "mrsauravsahu.vscode-manager",
+        "PKief.material-icon-theme"
+    ]
+}

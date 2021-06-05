@@ -25,36 +25,36 @@
 			"explorer/context": [
 				{
 					"when": "resourceLangId == json && resourceFilename =~ /profile.json$/ && resourceDirname =~ /.vscode$/",
-					"command": "customProfiles.launch",
+					"command": "vscode-manager.commands.launchProfile",
 					"group": "customProfiles"
 				}
 			],
 			"view/item/context": [
 				{
-					"command": "customProfiles.launch",
+					"command": "vscode-manager.commands.launchProfile",
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
-					"command": "customProfiles.delete",
+					"command": "vscode-manager.commands.deleteProfile",
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
-					"command": "customProfiles.rename",
+					"command": "vscode-manager.commands.renameProfile",
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
-					"command": "customProfiles.copyAlias",
+					"command": "vscode-manager.commands.copyAlias",
 					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
 			"view/title": [
 				{
-					"command": "customProfiles.refreshEntry",
+					"command": "vscode-manager.commands.refreshProfiles",
 					"when": "view == customProfiles",
 					"group": "navigation"
 				},
 				{
-					"command": "customProfiles.createProfile",
+					"command": "vscode-manager.commands.createProfile",
 					"when": "view == customProfiles",
 					"group": "navigation"
 				}
@@ -62,21 +62,21 @@
 		},
 		"commands": [
 			{
-				"command": "customProfiles.launch",
+				"command": "vscode-manager.commands.launchProfile",
 				"title": "Launch Custom Profile"
 			},
 			{
-				"command": "customProfiles.delete",
+				"command": "vscode-manager.commands.deleteProfile",
 				"title": "Delete",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
-				"command": "customProfiles.rename",
+				"command": "vscode-manager.commands.renameProfile",
 				"title": "Rename",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
-				"command": "customProfiles.copyAlias",
+				"command": "vscode-manager.commands.copyAlias",
 				"title": "Copy Alias Command",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
@@ -86,12 +86,12 @@
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
-				"command": "customProfiles.refreshEntry",
+				"command": "vscode-manager.commands.refreshProfiles",
 				"title": "Refresh",
 				"icon": "$(extensions-refresh)"
 			},
 			{
-				"command": "customProfiles.createProfile",
+				"command": "vscode-manager.commands.createProfile",
 				"title": "Create Profile",
 				"icon": "$(search-new-editor)"
 			}

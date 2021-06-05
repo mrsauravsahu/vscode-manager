@@ -39,7 +39,7 @@
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
-					"command": "customProfiles.rename",
+					"command": "vscode-manager.commands.renameProfile",
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
@@ -71,7 +71,7 @@
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
-				"command": "customProfiles.rename",
+				"command": "vscode-manager.commands.renameProfile",
 				"title": "Rename",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},

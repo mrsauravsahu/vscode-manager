@@ -4,6 +4,7 @@ import { createProfileCommand } from "./create-profile"
 import { deleteProfileCommand } from "./delete-profile"
 import { refreshProfilesCommand } from "./refresh-profiles"
 import { renameProfileCommand } from "./rename-profile"
+import { selectProfileCommand } from "./select-profile"
 
 export const commands = [
     createProfileCommand,
@@ -11,6 +12,7 @@ export const commands = [
     renameProfileCommand,
     cloneProfileCommand,
     deleteProfileCommand,
-    refreshProfilesCommand
+    refreshProfilesCommand,
+    selectProfileCommand
 ]
 

@@ -25,13 +25,13 @@
 			"explorer/context": [
 				{
 					"when": "resourceLangId == json && resourceFilename =~ /profile.json$/ && resourceDirname =~ /.vscode$/",
-					"command": "customProfiles.launch",
+					"command": "vscode-manager.commands.launchProfile",
 					"group": "customProfiles"
 				}
 			],
 			"view/item/context": [
 				{
-					"command": "customProfiles.launch",
+					"command": "vscode-manager.commands.launchProfile",
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
@@ -62,7 +62,7 @@
 		},
 		"commands": [
 			{
-				"command": "customProfiles.launch",
+				"command": "vscode-manager.commands.launchProfile",
 				"title": "Launch Custom Profile"
 			},
 			{

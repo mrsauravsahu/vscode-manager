@@ -152,17 +152,6 @@ export function activate(context: vscode.ExtensionContext) {
 		})
 	})
 
-	vscode.commands.registerCommand('customProfiles.clone', (...args) => {
-		const { name } = args[0]
-
-		const clonedProfilePath = `${rootStoragePath}/${name}-copy`
-
-		process.exec(`mkdir '${clonedProfilePath}'`)
-
-		customProfilesProvider.refresh()
-		vscode.window.showInformationMessage(`Cloned profile '${name}' to '${name}-copy'`)
-	})
-
 	// Register commands
 	commands.forEach(command => {
 		vscode.commands.registerCommand(

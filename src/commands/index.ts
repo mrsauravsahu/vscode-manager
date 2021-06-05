@@ -1,5 +1,7 @@
-import { createProfileCommandHandler } from "./create-profile"
+import { copyAliasCommand } from "./copy-alias"
+import { createProfileCommand } from "./create-profile"
 
 export const commands = [
-    createProfileCommandHandler
+    createProfileCommand,
+    copyAliasCommand
 ]

@@ -18,3 +18,8 @@ export type HandlerArgs = {
 }
 
 export type CommandHandler = ((args: HandlerArgs) => (...args: any[]) => any)
+
+export type Command = {
+    name: string,
+    handler: CommandHandler
+}

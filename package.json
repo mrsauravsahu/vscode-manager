@@ -43,7 +43,7 @@
 					"when": "view == customProfiles && viewItem == customProfile"
 				},
 				{
-					"command": "customProfiles.copyAlias",
+					"command": "vscode-manager.commands.copyAlias",
 					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
@@ -76,7 +76,7 @@
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
-				"command": "customProfiles.copyAlias",
+				"command": "vscode-manager.commands.copyAlias",
 				"title": "Copy Alias Command",
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},

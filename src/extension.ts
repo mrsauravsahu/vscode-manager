@@ -41,8 +41,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.app, myProvider))
 
-
-
 	// Register commands
 	commands.forEach(command => {
 		vscode.commands.registerCommand(

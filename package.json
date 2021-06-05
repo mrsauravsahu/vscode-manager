@@ -49,7 +49,7 @@
 			],
 			"view/title": [
 				{
-					"command": "customProfiles.refreshEntry",
+					"command": "vscode-manager.commands.refreshProfiles",
 					"when": "view == customProfiles",
 					"group": "navigation"
 				},
@@ -86,7 +86,7 @@
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
-				"command": "customProfiles.refreshEntry",
+				"command": "vscode-manager.commands.refreshProfiles",
 				"title": "Refresh",
 				"icon": "$(extensions-refresh)"
 			},

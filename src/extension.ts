@@ -163,17 +163,6 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage(`Cloned profile '${name}' to '${name}-copy'`)
 	})
 
-	vscode.commands.registerCommand('customProfiles.refreshEntry', () => {
-		customProfilesProvider.refresh()
-
-		if (customProfileService.getAll().length === 0) {
-			customProfilesExplorer.message = constants.strings.noProfiles
-		}
-		else {
-			customProfilesExplorer.message = undefined
-		}
-	})
-
 	// Register commands
 	commands.forEach(command => {
 		vscode.commands.registerCommand(

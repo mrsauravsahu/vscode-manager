@@ -10,6 +10,7 @@ export const commands = {
   createProfile: `${app}.commands.createProfile`,
   renameProfile: `${app}.commands.renameProfile`,
   deleteProfile: `${app}.commands.deleteProfile`,
+  refreshProfiles: `${app}.commands.refreshProfiles`,
   copyAlias: `${app}.commands.copyAlias`
 }
 

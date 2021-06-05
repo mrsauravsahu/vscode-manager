@@ -194,22 +194,6 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	})
 
-	vscode.commands.registerCommand('customProfiles.rename', async (...args) => {
-		const { name } = args[0]
-
-		const value = await vscode.window.showInputBox({
-			prompt: 'Rename custom profile to',
-			title: 'Rename',
-			value: name
-		})
-
-		const oldProfilePath = `${rootStoragePath}/${name}`
-		const newProfilePath = `${rootStoragePath}/${value}`
-		process.exec(`mv ${oldProfilePath} ${newProfilePath}`)
-
-		vscode.window.showInformationMessage(`Successfully renamed custom profile: '${value}'`)
-	})
-
 	// Register commands
 	commands.forEach(command => {
 		vscode.commands.registerCommand(

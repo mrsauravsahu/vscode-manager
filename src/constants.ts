@@ -8,6 +8,7 @@ export const commands = {
   launchProfile: `${app}.commands.launchProfile`,
   selectProfile: `${app}.commands.selectProfile`,
   createProfile: `${app}.commands.createProfile`,
+  renameProfile: `${app}.commands.renameProfile`,
   copyAlias: `${app}.commands.copyAlias`
 }
 

@@ -4,8 +4,10 @@ specifiers:
   '@types/glob': ^7.1.3
   '@types/mocha': ^8.0.4
   '@types/node': ^12.11.7
+  '@types/superagent': ^4.1.11
   '@types/vscode': ^1.56.0
   all-contributors-cli: ^6.20.0
+  axios: ^0.21.1
   glob: ^7.1.6
   json5: ^2.2.0
   mocha: ^8.2.1
@@ -15,6 +17,7 @@ specifiers:
   xo: ^0.40.2
 
 dependencies:
+  axios: 0.21.1
   json5: 2.2.0
   unique-names-generator: 4.5.0
 
@@ -22,6 +25,7 @@ devDependencies:
   '@types/glob': 7.1.3
   '@types/mocha': 8.2.2
   '@types/node': 12.20.13
+  '@types/superagent': 4.1.11
   '@types/vscode': 1.56.0
   all-contributors-cli: 6.20.0
   glob: 7.1.7
@@ -311,6 +315,10 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
+  /@types/cookiejar/2.1.2:
+    resolution: {integrity: sha512-t73xJJrvdTjXrn4jLS9VSGRbz0nUY3cl2DMGDU48lKl+HR9dbbjW2A9r3g40VA++mQpy6uuHg33gy7du2BKpog==}
+    dev: true
+
   /@types/eslint/7.2.13:
     resolution: {integrity: sha512-LKmQCWAlnVHvvXq4oasNUMTJJb2GwSyTY8+1C7OH5ILR8mPLaljv1jxL1bXW3xB3jFbQxTKxJAvI8PyjB09aBg==}
     dependencies:
@@ -353,12 +361,23 @@ packages:
     resolution: {integrity: sha512-1x8W5OpxPq+T85OUsHRP6BqXeosKmeXRtjoF39STcdf/UWLqUsoehstZKOi0CunhVqHG17AyZgpj20eRVooK6A==}
     dev: true
 
+  /@types/node/12.20.14:
+    resolution: {integrity: sha512-iFJOS5Q470FF+r4Ol2pSley7/wCNVqf+jgjhtxLLaJcDs+To2iCxlXIkJXrGLD9w9G/oJ9ibySu7z92DCwr7Pg==}
+    dev: true
+
   /@types/normalize-package-data/2.4.0:
     resolution: {integrity: sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==}
     dev: true
 
   /@types/parse-json/4.0.0:
     resolution: {integrity: sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==}
+    dev: true
+
+  /@types/superagent/4.1.11:
+    resolution: {integrity: sha512-cZkWBXZI+jESnUTp8RDGBmk1Zn2MkScP4V5bjD7DyqB7L0WNWpblh4KX5K/6aTqxFZMhfo1bhi2cwoAEDVBBJw==}
+    dependencies:
+      '@types/cookiejar': 2.1.2
+      '@types/node': 12.20.14
     dev: true
 
   /@types/vscode/1.56.0:
@@ -696,6 +715,14 @@ packages:
     engines: {node: '>= 4.5.0'}
     hasBin: true
     dev: true
+
+  /axios/0.21.1:
+    resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
+    dependencies:
+      follow-redirects: 1.14.1
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
@@ -1946,6 +1973,16 @@ packages:
   /flatted/3.1.1:
     resolution: {integrity: sha512-zAoAQiudy+r5SvnSw3KJy5os/oRJYHzrzja/tBDqrZtNhUw8bt6y8OBzMWcjWr+8liV8Eb6yOhw8WZ7VFZ5ZzA==}
     dev: true
+
+  /follow-redirects/1.14.1:
+    resolution: {integrity: sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
 
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}

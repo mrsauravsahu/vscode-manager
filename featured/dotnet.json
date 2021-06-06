@@ -1,0 +1,12 @@
+{
+  "name": "dotnet",
+  "userSettings": {
+    "window.title": "dotnet — ${activeEditorShort}${separator}${rootName}",
+    "window.zoomLevel": 1
+  },
+  "extensions": [
+    "fernandoescolar.vscode-solution-explorer",
+    "mrsauravsahu.vscode-manager",
+    "ms-dotnettools.csharp"
+  ]
+}

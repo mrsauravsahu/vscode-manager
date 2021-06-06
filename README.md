@@ -1,6 +1,6 @@
 # vscode-manager 
 ![](https://vsmarketplacebadge.apphb.com/version-short/mrsauravsahu.vscode-manager.svg?color=blue&subject=VSCode%20MarketPlace)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Manage multiple VSCode isolated instances with ease 😎**
@@ -22,7 +22,7 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 - Share & Import profiles using a `profile.json` file
 - Clone profiles
 
-Would love your feedback on this. Issues and PRs are welcome. Have a great one! And happy Coding! 😃 \-[Saurav](https://twitter.com/mrsauravsahu)
+Would love your feedback on this. Issues and PRs are welcome. Have a great one! And happy Coding! 😃 \- [Saurav](https://twitter.com/mrsauravsahu)
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):

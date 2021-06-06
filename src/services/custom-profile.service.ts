@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as child_process from 'child_process'
 import * as vscode from 'vscode'
+import * as json5 from 'json5'
 import * as constants from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 
@@ -52,8 +53,10 @@ export class CustomProfileService {
     // Get user settings
     let userSettings = {}
     try {
-      userSettings = JSON.parse(userSettingsString)
-    } catch {}
+      userSettings = json5.parse(userSettingsString)
+    } catch {
+      await vscode.window.showInformationMessage('The profile contains invalid user settings.')
+    }
 
     // Get extensions
     const getExtensionsCommandOutput = child_process.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)

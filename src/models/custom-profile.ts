@@ -1,7 +1,11 @@
-import * as vscode from 'vscode'
 import * as path from 'path'
+import * as vscode from 'vscode'
 
 export class CustomProfile extends vscode.TreeItem {
+  iconPath = path.join(__dirname, '..', '..', 'resources', 'vscode-icon.svg')
+  // TODO: Check later if this needs changing
+  contextValue = 'customProfile'
+
   constructor(
     public readonly id: string,
     public readonly name: string,
@@ -13,8 +17,4 @@ export class CustomProfile extends vscode.TreeItem {
     this.label = this.name
     this.description = this.tag
   }
-
-  iconPath = path.join(__dirname, '..', '..', 'resources', 'vscode-icon.svg')
-  // TODO: Check later if this needs changing
-  contextValue = "customProfile"
 }

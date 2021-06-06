@@ -5,11 +5,9 @@
 
 **Manage multiple VSCode isolated instances with ease 😎**
 
-
-
 VSCode Manager helps you manage multiple isolated VSCode instances with separate user settings and extensions. The extension is available on the Marketplace - [Install Now](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
 
-## What's New 🎉 🥳
+## What's New? 🎉 🥳 - changelog
 - **v0.0.7** Bug fix: Refresh Explorer after a profile is deleted
 - **v0.0.6** Create and share custom profile through a `.vscode/profile.json` file
 - **v0.0.5** View generated profile details file
@@ -19,7 +17,7 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 
 
 ## Coming soon 😎
-- Share & Import profiles using a `profile.json` file
+- Show featured custom profiles in `featured` section
 - Clone profiles
 
 Would love your feedback on this. Issues and PRs are welcome. Have a great one! And happy Coding! 😃 \- [Saurav](https://twitter.com/mrsauravsahu)

@@ -1,6 +1,7 @@
 # vscode-manager 
 ![](https://vsmarketplacebadge.apphb.com/version-short/mrsauravsahu.vscode-manager.svg?color=blue&subject=VSCode%20MarketPlace)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat)](#contributors-)<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat)](#contributors)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Manage multiple VSCode isolated instances with ease 😎**
 
@@ -21,7 +22,7 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 - Share & Import profiles using a `profile.json` file
 - Clone profiles
 
-Would love your feedback on this. Issues and PRs are welcome. Have a great one! And happy Coding! 😃 \-[Saurav](https://twitter.com/mrsauravsahu)
+Would love your feedback on this. Issues and PRs are welcome. Have a great one! And happy Coding! 😃 \- [Saurav](https://twitter.com/mrsauravsahu)
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
@@ -29,8 +30,15 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://rohinivsenthil.github.io"><img src="https://avatars.githubusercontent.com/u/42040329?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Rohini Senthil</b></sub></a><br /><a href="https://github.com/mrsauravsahu/vscode-manager/issues?q=author%3Arohinivsenthil" title="Bug reports">🐛</a></td>
+  </tr>
+</table>
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

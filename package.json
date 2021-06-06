@@ -102,6 +102,10 @@
 					"id": "customProfiles",
 					"name": "All Profiles",
 					"contextualTitle": "Custom Profiles"
+				},
+				{
+					"id": "featuredProfiles",
+					"name": "Featured Profiles"
 				}
 			]
 		},

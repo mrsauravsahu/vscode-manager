@@ -57,6 +57,11 @@
 					"command": "vscode-manager.commands.createProfile",
 					"when": "view == customProfiles",
 					"group": "navigation"
+				},
+				{
+					"command": "vscode-manager.commands.requestFeaturedProfile",
+					"when": "view == vscode-manager.views.treeViews.featuredProfiles",
+					"group": "navigation"
 				}
 			]
 		},
@@ -99,6 +104,11 @@
 				"command": "vscode-manager.commands.createProfile",
 				"title": "Create Profile",
 				"icon": "$(search-new-editor)"
+			},
+			{
+				"command": "vscode-manager.commands.requestFeaturedProfile",
+				"title": "Request Profile for Feature",
+				"icon": "$(git-pull-request)"
 			}
 		],
 		"views": {

@@ -13,6 +13,7 @@ export const commands = {
   deleteProfile: `${app}.commands.deleteProfile`,
   cloneProfile: `${app}.commands.cloneProfile`,
   refreshProfiles: `${app}.commands.refreshProfiles`,
+  requestFeaturedProfile: `${app}.commands.requestFeaturedProfile`,
   copyAlias: `${app}.commands.copyAlias`
 }
 

@@ -4,7 +4,7 @@
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"repository": {
 		"url": "https://github.com/mrsauravsahu/vscode-manager",
 		"type": "git"
@@ -149,7 +149,9 @@
 		"@types/superagent": "^4.1.11",
 		"@types/vscode": "^1.56.0",
 		"all-contributors-cli": "^6.20.0",
+		"follow-redirects": "^1.10.0",
 		"glob": "^7.1.6",
+		"minimist": "^1.2.5",
 		"mocha": "^8.2.1",
 		"typescript": "^4.1.3",
 		"vscode-test": "^1.5.0",
@@ -159,5 +161,9 @@
 		"axios": "^0.21.1",
 		"json5": "^2.2.0",
 		"unique-names-generator": "^4.5.0"
+	},
+	"peerDependencies": {
+		"follow-redirects": "^1.10.0",
+		"minimist": "^1.2.5"
 	}
 }

@@ -36,6 +36,8 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.app, myProvider))
 
+  customProfilesProvider.refresh()
+
   // Register commands
   for (const command of commands) {
     vscode.commands.registerCommand(

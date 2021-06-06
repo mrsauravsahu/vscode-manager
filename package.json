@@ -135,6 +135,7 @@
 		"xo": "^0.40.2"
 	},
 	"dependencies": {
+		"json5": "^2.2.0",
 		"unique-names-generator": "^4.5.0"
 	}
 }

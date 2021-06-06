@@ -1,0 +1,21 @@
+{
+    "name": "mrsauravsahu",
+    "userSettings": {
+        "window.title": "mrsauravsahu — ${activeEditorShort}${separator}${rootName}",
+        "editor.fontFamily": "'Cascadia Code PL', Menlo, Monaco, 'Courier New', monospace",
+        "editor.fontLigatures": true,
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.colorTheme": "Horizon Bold",
+        "editor.formatOnType": true,
+        "editor.formatOnSave": true,
+        "window.zoomLevel": 2
+    },
+    "extensions": [
+        "mrsauravsahu.vscode-manager",
+        "WallabyJs.quokka-vscode",
+        "Gruntfuggly.todo-tree",
+        "jolaleye.horizon-theme-vscode",
+        "PKief.material-icon-theme",
+        "rohinivsenthil.postcode"
+    ]
+}

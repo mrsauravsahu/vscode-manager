@@ -1,19 +1,21 @@
-import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as child_process from 'child_process'
+import * as vscode from 'vscode'
 import * as constants from '../constants'
-import { CustomProfile } from '../models/custom-profile'
+import {CustomProfile} from '../models/custom-profile'
 
 export class CustomProfileService {
   getAll(): CustomProfile[] {
-    const { rootStoragePath } = constants
+    const {rootStoragePath} = constants
 
-    // check if dir exists 
-    var rootExists = fs.existsSync(rootStoragePath)
+    // Check if dir exists
+    const rootExists = fs.existsSync(rootStoragePath)
 
-    if (!rootExists) { fs.mkdirSync(rootStoragePath) }
+    if (!rootExists) {
+      fs.mkdirSync(rootStoragePath)
+    }
 
-    const rootItems = fs.readdirSync(rootStoragePath, { withFileTypes: true })
+    const rootItems = fs.readdirSync(rootStoragePath, {withFileTypes: true})
     const profileNames = rootItems.filter(item => {
       return item.isDirectory()
     })
@@ -28,7 +30,7 @@ export class CustomProfileService {
 
         profile.command = {
           command: constants.commands.selectProfile,
-          title: "Select Custom Profile",
+          title: 'Select Custom Profile',
           arguments: [profile]
         }
 
@@ -44,21 +46,21 @@ export class CustomProfileService {
 
     let userSettingsString = '{}'
     if (fs.existsSync(userSettingsPath)) {
-      userSettingsString = await fs.promises.readFile(userSettingsPath, { encoding: 'utf-8' })
+      userSettingsString = await fs.promises.readFile(userSettingsPath, {encoding: 'utf-8'})
     }
 
     // Get user settings
     let userSettings = {}
     try {
       userSettings = JSON.parse(userSettingsString)
-    } catch (_) { }
+    } catch {}
 
     // Get extensions
     const getExtensionsCommandOutput = child_process.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
     const extensions = getExtensionsCommandOutput
       .toString()
       .trim()
-      .split(/[\n\r\n]/)
+      .split(/[\n\r]/)
       .filter(p => p.trim() !== '')
 
     const profile = {

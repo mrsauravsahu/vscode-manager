@@ -12,7 +12,7 @@ env:
   NODE_VERSION: "14.17.0"
 
 jobs:
-  build_library:
+  ci_tests:
     runs-on: ubuntu-20.04
 
     steps:

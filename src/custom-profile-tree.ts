@@ -4,15 +4,18 @@ import {CustomProfileService} from './services/custom-profile.service'
 
 export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomProfile> {
   readonly onDidChangeTreeData: vscode.Event<CustomProfile | undefined | null | void>
+  private profiles: CustomProfile[]
   private readonly _onDidChangeTreeData: vscode.EventEmitter<CustomProfile | undefined | null | void>
 
   constructor(private readonly context: vscode.ExtensionContext,
     private readonly customProfilesService: CustomProfileService) {
     this._onDidChangeTreeData = new vscode.EventEmitter<CustomProfile | undefined | null | void>()
     this.onDidChangeTreeData = this._onDidChangeTreeData.event
+    this.profiles = []
   }
 
   refresh(): void {
+    this.profiles = this.customProfilesService.getAll()
     this._onDidChangeTreeData.fire()
   }
 
@@ -21,6 +24,6 @@ export class CustomProfilesProvider implements vscode.TreeDataProvider<CustomPro
   }
 
   getChildren(): vscode.ProviderResult<CustomProfile[]> {
-    return this.customProfilesService.getAll()
+    return this.profiles
   }
 }

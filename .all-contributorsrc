@@ -9,6 +9,17 @@
   "imageSize": 100,
   "commit": true,
   "commitConvention": "none",
-  "contributors": [],
-  "contributorsPerLine": 7
+  "contributors": [
+    {
+      "login": "rohinivsenthil",
+      "name": "Rohini Senthil",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42040329?v=4",
+      "profile": "https://rohinivsenthil.github.io",
+      "contributions": [
+        "bug"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true
 }

@@ -5,14 +5,14 @@ import {Command} from '../types'
 
 export const copyAliasCommand: Command = {
   name: commands.copyAlias,
-  handler: () => (customProfile: CustomProfile) => {
+  handler: () => async (customProfile: CustomProfile) => {
     const {name} = customProfile
 
     const launchCommand = `code --user-data-dir='${rootStoragePath}/${name}/data' --extensions-dir='${rootStoragePath}/${name}/extensions' -n`
     // TODO: Make platform independent
     const aliasCommand = `alias ${name}-profile='${launchCommand}'`
 
-    vscode.env.clipboard.writeText(aliasCommand)
-    vscode.window.showInformationMessage('Copied alias command to the clipboard')
+    await vscode.env.clipboard.writeText(aliasCommand)
+    await vscode.window.showInformationMessage('Copied alias command to the clipboard')
   }
 }

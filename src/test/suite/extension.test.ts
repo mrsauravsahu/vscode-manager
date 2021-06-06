@@ -5,8 +5,8 @@ import * as assert from 'assert'
 import * as vscode from 'vscode'
 // Import * as myExtension from '../../extension';
 
-suite('Extension Test Suite', () => {
-  vscode.window.showInformationMessage('Start all tests.')
+suite('Extension Test Suite', async () => {
+  await vscode.window.showInformationMessage('Start all tests.')
 
   test('Sample test', () => {
     assert.strictEqual(-1, [1, 2, 3].indexOf(5))

@@ -8,7 +8,7 @@ import {Command} from '../types'
 
 export const createProfileCommand: Command = {
   name: commands.createProfile,
-  handler: ({provider, service, treeView}) => () => {
+  handler: ({provider, service, treeView}) => async () => {
     const newProfileName = uniqueNamesGenerator({
       dictionaries: [adjectives, animals],
       separator: '-'
@@ -24,6 +24,6 @@ export const createProfileCommand: Command = {
     provider.refresh()
     treeView.message = service.getAll().length === 0 ? strings.noProfiles : undefined
 
-    vscode.window.showInformationMessage(`Created new custom profile: '${newProfileName}'`)
+    await vscode.window.showInformationMessage(`Created new custom profile: '${newProfileName}'`)
   }
 }

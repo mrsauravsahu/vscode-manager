@@ -32,7 +32,7 @@ export const launchProfileCommand: Command = {
         // Check if this profile file has same value as
         // the generated value from profile name;
         if (!fs.existsSync(path)) {
-          vscode.window.showInformationMessage('Unable to find the custom profile details file.')
+          await vscode.window.showInformationMessage('Unable to find the custom profile details file.')
         }
 
         const profileDetailsString = await fs.promises.readFile(path, {encoding: 'utf-8'})
@@ -41,7 +41,7 @@ export const launchProfileCommand: Command = {
         try {
           profileDetailsJson = JSON.parse(profileDetailsString)
         } catch {
-          vscode.window.showInformationMessage('The selected profile details file has invalid data. Please use a valid JSON file.')
+          await vscode.window.showInformationMessage('The selected profile details file has invalid data. Please use a valid JSON file.')
           return
         }
 
@@ -57,7 +57,7 @@ export const launchProfileCommand: Command = {
         const profileExists = fs.existsSync(`${rootStoragePath}/${profileName}`)
 
         if (!profileExists) {
-          vscode.window.showInformationMessage('The selected profile does not exist. Creating it now.')
+          await vscode.window.showInformationMessage('The selected profile does not exist. Creating it now.')
 
           progress.report({increment: 10, message: 'creating Custom Profile folder...'})
           fs.mkdirSync(`${rootStoragePath}/${profileName}`)
@@ -93,7 +93,7 @@ export const launchProfileCommand: Command = {
             const launchCommand = `code --user-data-dir='${rootStoragePath}/${profileName}/data' --extensions-dir='${rootStoragePath}/${profileName}/extensions' -n`
             child_process.execSync(launchCommand)
           } else {
-            vscode.window.showInformationMessage('Please use a different name. Another profile with the same name already exists, but with different settings.')
+            await vscode.window.showInformationMessage('Please use a different name. Another profile with the same name already exists, but with different settings.')
           }
         }
       }

@@ -19,4 +19,5 @@ async function main() {
   }
 }
 
-main()
+// eslint disable @typescript-eslint/no-floating-promises
+void main()

@@ -11,7 +11,7 @@ export const deleteProfileCommand: Command = {
   handler: ({service, treeView}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
     if (name === profiles.default) {
-      vscode.window.showErrorMessage('Cannot delete the default profile')
+      await vscode.window.showErrorMessage('Cannot delete the default profile')
       return
     }
 
@@ -19,8 +19,8 @@ export const deleteProfileCommand: Command = {
 
     if (confirmation === 'Yes') {
       const profilePath = path.join(rootStoragePath, name)
-      child_process.exec(`rm -r ${profilePath}`)
-      vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)
+      child_process.execSync(`rm -r ${profilePath}`)
+      await vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)
 
       if (service.getAll().length === 0) {
         treeView.message = strings.noProfiles

@@ -6,8 +6,8 @@ import {Command} from '../types'
 
 export const selectProfileCommand: Command = {
   name: commands.selectProfile,
-  handler: () => (item: CustomProfile) => {
-    vscode.window.withProgress({
+  handler: () => async (item: CustomProfile) => {
+    await vscode.window.withProgress({
       location: vscode.ProgressLocation.Notification,
       title: 'Generating Profile Details',
       cancellable: false

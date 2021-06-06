@@ -20,6 +20,6 @@ export const renameProfileCommand: Command = {
     const newProfilePath = `${rootStoragePath}/${value}`
     child_process.exec(`mv ${oldProfilePath} ${newProfilePath}`)
 
-    vscode.window.showInformationMessage(`Successfully renamed custom profile: '${value}'`)
+    await vscode.window.showInformationMessage(`Successfully renamed custom profile: '${value}'`)
   }
 }

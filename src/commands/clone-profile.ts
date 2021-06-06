@@ -9,7 +9,7 @@ import {Command} from '../types'
 
 export const cloneProfileCommand: Command = {
   name: commands.cloneProfile,
-  handler: ({provider}) => (customProfile: CustomProfile) => {
+  handler: ({provider}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
 
     const clonedProfilePath = `${rootStoragePath}/${name}-copy`
@@ -17,6 +17,6 @@ export const cloneProfileCommand: Command = {
     child_process.exec(`mkdir '${clonedProfilePath}'`)
 
     provider.refresh()
-    vscode.window.showInformationMessage(`Cloned profile '${name}' to '${name}-copy'`)
+    await vscode.window.showInformationMessage(`Cloned profile '${name}' to '${name}-copy'`)
   }
 }

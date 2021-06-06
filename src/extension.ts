@@ -2,13 +2,13 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode'
 
-import { CustomProfilesProvider } from './custom-profile-tree'
+import {CustomProfilesProvider} from './custom-profile-tree'
 import * as constants from './constants'
-import { CustomProfileService } from './services/custom-profile.service'
-import { commands } from './commands'
-import { FeaturedProfileService } from './services/featured-profile.service'
-import { FeaturedProfilesProvider } from './providers/featured-profiles.provider'
-import { FeaturedProfileContentProvider } from './providers/featured-profile-content.provider'
+import {CustomProfileService} from './services/custom-profile.service'
+import {commands} from './commands'
+import {FeaturedProfileService} from './services/featured-profile.service'
+import {FeaturedProfilesProvider} from './providers/featured-profiles.provider'
+import {FeaturedProfileContentProvider} from './providers/featured-profile-content.provider'
 
 // This method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -45,7 +45,7 @@ export async function activate(context: vscode.ExtensionContext) {
   /* FEATURED PROFILES SECTION */
   const featuredProfilesService = new FeaturedProfileService()
   const featuredProfilesProvider = new FeaturedProfilesProvider(featuredProfilesService)
-  const featuredProfilesExplorer = vscode.window.createTreeView(constants.views.featuredProfiles, {
+  vscode.window.createTreeView(constants.views.featuredProfiles, {
     treeDataProvider: featuredProfilesProvider
   })
 

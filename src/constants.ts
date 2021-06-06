@@ -15,6 +15,10 @@ export const commands = {
   copyAlias: `${app}.commands.copyAlias`
 }
 
+export const views = {
+  featuredProfiles: `${app}.views.treeViews.featuredProfiles`
+}
+
 export const models = {
   profile: `${app}.models.profile`
 }
@@ -26,3 +30,5 @@ export const profiles = {
 export const strings = {
   noProfiles: 'No custom profiles found... Let\'s create one now.'
 }
+
+export const featuredProfileUrl = 'http://api.github.com/repos/mrsauravsahu/vscode-manager/contents/featured'

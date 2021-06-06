@@ -104,7 +104,7 @@
 					"contextualTitle": "Custom Profiles"
 				},
 				{
-					"id": "featuredProfiles",
+					"id": "vscode-manager.views.treeViews.featuredProfiles",
 					"name": "Featured Profiles"
 				}
 			]
@@ -141,8 +141,8 @@
 		"xo": "^0.40.2"
 	},
 	"dependencies": {
+		"axios": "^0.21.1",
 		"json5": "^2.2.0",
-		"superagent": "^6.1.0",
 		"unique-names-generator": "^4.5.0"
 	}
 }

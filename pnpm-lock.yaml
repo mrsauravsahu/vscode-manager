@@ -757,7 +757,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001234
+      caniuse-lite: 1.0.30001235
       colorette: 1.2.2
       electron-to-chromium: 1.3.749
       escalade: 3.1.1
@@ -847,8 +847,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001234:
-    resolution: {integrity: sha512-a3gjUVKkmwLdNysa1xkUAwN2VfJUJyVW47rsi3aCbkRCtbHAfo+rOsCqVw29G6coQ8gzAPb5XBXwiGHwme3isA==}
+  /caniuse-lite/1.0.30001235:
+    resolution: {integrity: sha512-zWEwIVqnzPkSAXOUlQnPW2oKoYb2aLQ4Q5ejdjBcnH63rfypaW34CxaeBn1VMya2XaEU3P/R2qHpWyj+l0BT1A==}
     dev: true
 
   /chainsaw/0.1.0:

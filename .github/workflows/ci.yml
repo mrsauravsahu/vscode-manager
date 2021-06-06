@@ -1,0 +1,35 @@
+name: "ci"
+
+on:
+  pull_request:
+    branches:
+      - cool
+  push:
+    branches:
+      - cool
+
+env:
+  NODE_VERSION: "14.17.0"
+
+jobs:
+  build_library:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout to branch
+        uses: actions/checkout@v2
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v1.2.1
+        with:
+          version: 6.7.1
+          run_install: |
+            - recursive: true
+
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Lint project
+        run: pnpm lint

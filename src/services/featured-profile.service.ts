@@ -5,6 +5,16 @@ import * as constants from '../constants'
 import { CustomProfile } from '../models/custom-profile';
 
 export class FeaturedProfileService {
+    async getProfileDetails(profile: string): Promise<string> {
+        const url = `https://raw.githubusercontent.com/mrsauravsahu/vscode-manager/feat/featured-profiles/featured/${profile}`
+        const featuredProfileListResponse = await axios({ url, responseType: 'text' })
+        const profileDetails = (featuredProfileListResponse.data)
+
+        if (typeof profileDetails === 'object')
+            return JSON.stringify(profileDetails, undefined, 2)
+        return profileDetails
+    }
+
     async getAll(): Promise<CustomProfile[]> {
 
         const branchRef = 'feat/featured-profiles'
@@ -20,6 +30,12 @@ export class FeaturedProfileService {
                     '',
                     vscode.TreeItemCollapsibleState.None,
                     path.join(__dirname, '..', '..', 'resources', 'github.svg'))
+
+                profile.command = {
+                    command: constants.commands.selectFeaturedProfile,
+                    title: 'Select Featured Profile',
+                    arguments: [profile]
+                }
 
                 return profile
             })

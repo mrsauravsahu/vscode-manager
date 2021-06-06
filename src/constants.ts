@@ -7,6 +7,7 @@ export const rootStoragePath = `${os.homedir()}/.config/${app}`
 export const commands = {
   launchProfile: `${app}.commands.launchProfile`,
   selectProfile: `${app}.commands.selectProfile`,
+  selectFeaturedProfile: `${app}.commands.selectFeaturedProfile`,
   createProfile: `${app}.commands.createProfile`,
   renameProfile: `${app}.commands.renameProfile`,
   deleteProfile: `${app}.commands.deleteProfile`,
@@ -29,6 +30,11 @@ export const profiles = {
 
 export const strings = {
   noProfiles: 'No custom profiles found... Let\'s create one now.'
+}
+
+export const uriSchemes = {
+  customProfile: `${app}.uri.customProfile`,
+  featuredProfile: `${app}.uri.featuredProfile`
 }
 
 export const featuredProfileUrl = 'http://api.github.com/repos/mrsauravsahu/vscode-manager/contents/featured'

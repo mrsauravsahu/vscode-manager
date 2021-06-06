@@ -86,6 +86,11 @@
 				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
+				"command": "customProfiles.commands.selectFeaturedProfile",
+				"title": "Select Featured Custom Profile",
+				"enablement": "view == 'vscode-manager.views.treeViews.featuredProfiles' && viewItem == customProfile"
+			},
+			{
 				"command": "vscode-manager.commands.refreshProfiles",
 				"title": "Refresh",
 				"icon": "$(extensions-refresh)"

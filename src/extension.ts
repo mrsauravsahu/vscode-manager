@@ -8,6 +8,7 @@ import { CustomProfileService } from './services/custom-profile.service'
 import { commands } from './commands'
 import { FeaturedProfileService } from './services/featured-profile.service'
 import { FeaturedProfilesProvider } from './providers/featured-profiles.provider'
+import { FeaturedProfileContentProvider } from './providers/featured-profile-content.provider'
 
 // This method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -36,7 +37,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }
   }()
 
-  context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.app, myProvider))
+  context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.uriSchemes.customProfile, myProvider))
 
   // Refresh all custom profiles explorer
   customProfilesProvider.refresh()
@@ -49,6 +50,10 @@ export async function activate(context: vscode.ExtensionContext) {
   })
 
   await featuredProfilesProvider.refresh()
+
+  context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.uriSchemes.featuredProfile,
+    new FeaturedProfileContentProvider(featuredProfilesService)
+  ))
 
   // Register commands
   for (const command of commands) {

@@ -15,6 +15,13 @@
 	"categories": [
 		"Other"
 	],
+	"keywords": [
+			"vscode-manager",
+			"custom-profile",
+			"profiles",
+			"power-user",
+			"customization"
+	],
 	"activationEvents": [
 		"onView:customProfiles",
 		"workspaceContains:**/.vscode/profile.json"

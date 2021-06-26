@@ -8,5 +8,6 @@ module.exports = {
         '@typescript-eslint/no-unsafe-assignment': 'off',
         '@typescript-eslint/no-implicit-any-catch': 'off',
         'no-negated-condition': 'off',
+        'no-await-in-loop': 'off'
     }
 };

@@ -19,7 +19,6 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 
 
 ## Coming soon 😎
-- Show featured custom profiles in `featured` section
 - Clone profiles
 
 Would love your feedback on this. Issues and PRs are welcome. Have a great one! And happy Coding! 😃 \- [Saurav](https://twitter.com/mrsauravsahu)

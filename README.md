@@ -25,7 +25,9 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 
 ### Installation
 
-You can always install the extension throught the extensions tab inside VSCode - searching for `mrsauravsahu` this should narrow the search results.
+You can always install the extension through the extensions tab inside VSCode - searching for `mrsauravsahu` should narrow the search results.
+
+![VSCode Manager in Extensions Tab](https://user-images.githubusercontent.com/9134050/123517171-2140f400-d6bd-11eb-9071-e64fecb2505e.png)
 
 ### Creating a Custom Profile
 
@@ -54,7 +56,7 @@ You can modify all user settings and install extensions within the custom profil
 If you created a new profile, you will be presented with the default launch screen and all settings and extensions will be isolated.
 
 As you make changes to this profile, you'll be able to see changes in the json schema for this profile through the Custom Profiles Explorer.
-### Sharing a custom profile among your team
+### Sharing a custom profile between your team
 VSCode Manager can also be used to share consistent User Settings and Extensions among your team members.
 
 #### .vscode/profile.json

@@ -14,7 +14,7 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 - **v0.0.5** View generated profile details file
 - **v0.0.4** Create new isolated profile with default settings
 
-![Small GIF of the VSCode Manager Extension](https://user-images.githubusercontent.com/9134050/120378526-2c159c80-c33c-11eb-8f06-ee0b74f9e196.gif)
+![Screenshot of the VSCode Manager Extension](https://user-images.githubusercontent.com/9134050/123510276-1de74180-d698-11eb-8317-349c092fa6b1.png)
 
 
 ## Coming soon 😎

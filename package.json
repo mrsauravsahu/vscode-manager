@@ -4,7 +4,7 @@
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"repository": {
 		"url": "https://github.com/mrsauravsahu/vscode-manager",
 		"type": "git"
@@ -14,6 +14,13 @@
 	},
 	"categories": [
 		"Other"
+	],
+	"keywords": [
+			"vscode-manager",
+			"custom-profile",
+			"profiles",
+			"power-user",
+			"customization"
 	],
 	"activationEvents": [
 		"onView:customProfiles",

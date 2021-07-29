@@ -1,10 +1,10 @@
 {
 	"name": "vscode-manager",
-	"displayName": "VSCode Manager",
+	"displayName": "Custom Profiles for VSCode",
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
-	"version": "1.1.0",
+	"version": "1.1.1",
 	"repository": {
 		"url": "https://github.com/mrsauravsahu/vscode-manager",
 		"type": "git"

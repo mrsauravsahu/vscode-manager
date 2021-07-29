@@ -20,7 +20,14 @@ export class FeaturedProfileService {
   async getAll(): Promise<CustomProfile[]> {
     const branchRef = 'cool'
     const url = `${constants.featuredProfileUrl}?ref=${branchRef}`
-    const featuredProfileListResponse = await axios(url)
+    let featuredProfileListResponse
+
+    try {
+      featuredProfileListResponse = await axios(url)
+    } catch {
+      // TODO: Show an error message when listing featured profiles fails
+      featuredProfileListResponse = {data: []}
+    }
 
     const profiles = (featuredProfileListResponse.data as any[])
       .map((item: {name: string}) => {

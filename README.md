@@ -5,7 +5,9 @@
 
 **Manage multiple VSCode isolated instances with ease 😎**
 
-'Custom Profiles for VSCode' helps you manage multiple isolated VSCode instances with separate user settings and extensions. The extension is available on the Marketplace - [Install Now](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
+'Custom Profiles for VSCode' helps large teams achieve consistent settings and extensions with a single json file. You can also use it to isolate VSCode instances with separate user settings and extensions.
+
+The extension is available on the Marketplace - [here](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
 
 ## What's New? 🎉 🥳 - changelog
 - **v1.1.0** Bug fix: Launch custom profiles from `.vscode/profile.json`

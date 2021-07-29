@@ -1,11 +1,11 @@
-# vscode-manager 
+# Custom Profiles for VSCode
 ![](https://vsmarketplacebadge.apphb.com/version-short/mrsauravsahu.vscode-manager.svg?color=blue&subject=VSCode%20MarketPlace)<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat)](#contributors)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **Manage multiple VSCode isolated instances with ease 😎**
 
-VSCode Manager helps you manage multiple isolated VSCode instances with separate user settings and extensions. The extension is available on the Marketplace - [Install Now](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
+'Custom Profiles for VSCode' helps you manage multiple isolated VSCode instances with separate user settings and extensions. The extension is available on the Marketplace - [Install Now](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
 
 ## What's New? 🎉 🥳 - changelog
 - **v1.1.0** Bug fix: Launch custom profiles from `.vscode/profile.json`
@@ -15,7 +15,7 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 - **v0.0.5** View generated profile details file
 - **v0.0.4** Create new isolated profile with default settings
 
-![Screenshot of the VSCode Manager Extension](https://user-images.githubusercontent.com/9134050/123510276-1de74180-d698-11eb-8317-349c092fa6b1.png)
+![Screenshot of the 'Custom Profiles for VSCode' Extension](https://user-images.githubusercontent.com/9134050/123510276-1de74180-d698-11eb-8317-349c092fa6b1.png)
 
 
 ## Coming soon 😎
@@ -27,17 +27,17 @@ VSCode Manager helps you manage multiple isolated VSCode instances with separate
 
 You can always install the extension through the extensions tab inside VSCode - searching for `mrsauravsahu` should narrow the search results.
 
-![VSCode Manager in Extensions Tab](https://user-images.githubusercontent.com/9134050/123517171-2140f400-d6bd-11eb-9071-e64fecb2505e.png)
+![Custom Profiles for VSCode in Extensions Tab](https://user-images.githubusercontent.com/9134050/123517171-2140f400-d6bd-11eb-9071-e64fecb2505e.png)
 
 ### Creating a Custom Profile
 
 - After installing the extension, you should be able to find the sidebar icon. Click to view the `Custom Profiles Explorer`. You will find all your custom profiles here.
 
-![VSCode Manager Extension in the sidebar](https://user-images.githubusercontent.com/9134050/123516881-0457f100-d6bc-11eb-80b3-4e03935fad9b.png)
+![Custom Profiles for VSCode Extension in the sidebar](https://user-images.githubusercontent.com/9134050/123516881-0457f100-d6bc-11eb-80b3-4e03935fad9b.png)
 
 - Click the `+ New Profile` button to create a custom profile. A new profile with a randomly chosen name will be created.
 
-![Create a new VSCode Custom Profile](https://user-images.githubusercontent.com/9134050/123516879-03bf5a80-d6bc-11eb-87c8-2d949f944206.png)
+![Create a new Custom Profile](https://user-images.githubusercontent.com/9134050/123516879-03bf5a80-d6bc-11eb-87c8-2d949f944206.png)
 
 - You can now `rename` the profile or `launch` it with a right click.
 
@@ -57,7 +57,7 @@ If you created a new profile, you will be presented with the default launch scre
 
 As you make changes to this profile, you'll be able to see changes in the json schema for this profile through the Custom Profiles Explorer.
 ### Sharing a custom profile between your team
-VSCode Manager can also be used to share consistent User Settings and Extensions among your team members.
+Custom Profiles for VSCode can also be used to share consistent User Settings and Extensions among your team members.
 
 #### .vscode/profile.json
 In your repository, create a `.vscode/profile.json` file, pasting in any custom profile you have created.

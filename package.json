@@ -1,6 +1,6 @@
 {
 	"name": "vscode-manager",
-	"displayName": "VSCode Manager",
+	"displayName": "Custom Profiles for VSCode",
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",

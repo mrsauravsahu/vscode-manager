@@ -33,7 +33,7 @@ jobs:
       - name: Calculate version
         id: calculateVersion
         run: |
-          APP_VERSION=cat package.json | jq ".version" -M | sed 's/\"//g'
+          APP_VERSION=`cat package.json | jq ".version" -M | sed 's/\"//g'`
           echo '::set-output name=AppVersion::$APP_VERSION'
           echo "app version = v$APP_VERSION"
 

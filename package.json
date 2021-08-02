@@ -157,7 +157,8 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "xo",
-		"test": "node ./out/test/run-test.js"
+		"test": "node ./out/test/run-test.js",
+		"build": "(rm -rf out || true) && mkdir out && cp package.json out && vsce package"
 	},
 	"devDependencies": {
 		"@types/child-process-promise": "^2.2.1",

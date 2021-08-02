@@ -34,7 +34,7 @@ jobs:
         id: calculateVersion
         run: |
           APP_VERSION=`cat package.json | jq ".version" -M | sed 's/\"//g'`
-          echo '::set-output name=AppVersion::$APP_VERSION'
+          echo "::set-output name=AppVersion::$APP_VERSION"
           echo "app version = v$APP_VERSION"
 
       - name: Build VSIX package

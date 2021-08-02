@@ -38,10 +38,10 @@ jobs:
           echo "app version = v$APP_VERSION"
 
       - name: Build VSIX package
-        run: npm run build -- -o custom-profiles-for-vscode.v{{ steps.calculateVersion.outputs.AppVersion }}.vsix
+        run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
 
       - uses: actions/upload-artifact@v2
         name: Upload artifact
         with:
-          name: custom-profiles-for-vscode.v{{ steps.calculateVersion.outputs.AppVersion }}.vsix
-          path: custom-profiles-for-vscode.v{{ steps.calculateVersion.outputs.AppVersion }}.vsix
+          name: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
+          path: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix

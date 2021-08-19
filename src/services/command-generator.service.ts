@@ -24,7 +24,7 @@ export class CommandGeneratorService {
         let commandShell: string;
 
         if (this.osType === 'Windows_NT') {
-            commandShell = 'powershell -Command'
+            commandShell = 'powershell -NoProfile -Command'
         }
         else {
             commandShell = 'bash -c'

@@ -3,9 +3,9 @@ import {Command} from '../types'
 
 export const refreshProfilesCommand: Command = {
   name: commands.refreshProfiles,
-  handler: ({treeView, provider, service}) => () => {
+  handler: ({treeView, provider, services: [customProfileService, ..._]}) => () => {
     provider.refresh()
 
-    treeView.message = service.getAll().length === 0 ? strings.noProfiles : undefined
+    treeView.message = customProfileService.getAll().length === 0 ? strings.noProfiles : undefined
   }
 }

@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import * as path from 'path'
 import * as child_process from 'child_process'
 import * as vscode from 'vscode'
 import * as json5 from 'json5'
@@ -43,7 +44,7 @@ export class CustomProfileService {
   }
 
   async generateProfileJson(profileName: string): Promise<string> {
-    const userSettingsPath = `${constants.rootStoragePath}/${profileName}/data/User/settings.json`
+    const userSettingsPath = path.join(constants.rootStoragePath,profileName, 'data','User','settings.json');
 
     let userSettingsString = '{}'
     if (fs.existsSync(userSettingsPath)) {
@@ -59,7 +60,7 @@ export class CustomProfileService {
     }
 
     // Get extensions
-    const getExtensionsCommandOutput = child_process.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
+    const getExtensionsCommandOutput = child_process.execSync(`powershell -Command "code --user-data-dir='${path.join(constants.rootStoragePath,profileName,'data')} --extensions-dir='${path.join(constants.rootStoragePath,profileName,'extensions')}' --list-extensions"`)
     const extensions = getExtensionsCommandOutput
       .toString()
       .trim()

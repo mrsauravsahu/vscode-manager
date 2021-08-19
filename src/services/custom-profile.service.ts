@@ -63,7 +63,7 @@ export class CustomProfileService {
     }
 
     // Get extensions
-    const getExtensionsCommand = this.commandGeneratorService.generateCommand('code', `--user-data-dir='${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir='${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
+    const getExtensionsCommand = this.commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
     const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand)
     const extensions = getExtensionsCommandOutput
       .stdout

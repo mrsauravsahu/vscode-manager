@@ -15,8 +15,8 @@ import { CommandGeneratorService } from './services/command-generator.service'
 // your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
   // TODO: Make rootPath cross platform
-  const customProfileService = new CustomProfileService()
   const commandGeneratorService = new CommandGeneratorService()
+  const customProfileService = new CustomProfileService(commandGeneratorService)
   const customProfilesProvider = new CustomProfilesProvider(context, customProfileService)
 
   vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider)

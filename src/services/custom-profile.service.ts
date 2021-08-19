@@ -1,14 +1,17 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import * as child_process from 'child_process'
+import * as child_process from 'child-process-promise'
 import * as vscode from 'vscode'
 import * as json5 from 'json5'
 import * as constants from '../constants'
-import {CustomProfile} from '../models/custom-profile'
+import { CustomProfile } from '../models/custom-profile'
+import { CommandGeneratorService } from './command-generator.service'
 
 export class CustomProfileService {
+  public constructor(private readonly commandGeneratorService: CommandGeneratorService) { }
+
   getAll(): CustomProfile[] {
-    const {rootStoragePath} = constants
+    const { rootStoragePath } = constants
 
     // Check if dir exists
     const rootExists = fs.existsSync(rootStoragePath)
@@ -17,7 +20,7 @@ export class CustomProfileService {
       fs.mkdirSync(rootStoragePath)
     }
 
-    const rootItems = fs.readdirSync(rootStoragePath, {withFileTypes: true})
+    const rootItems = fs.readdirSync(rootStoragePath, { withFileTypes: true })
     const profileNames = rootItems.filter(item => {
       return item.isDirectory()
     })
@@ -44,11 +47,11 @@ export class CustomProfileService {
   }
 
   async generateProfileJson(profileName: string): Promise<string> {
-    const userSettingsPath = path.join(constants.rootStoragePath,profileName, 'data','User','settings.json');
+    const userSettingsPath = path.join(constants.rootStoragePath, profileName, 'data', 'User', 'settings.json');
 
     let userSettingsString = '{}'
     if (fs.existsSync(userSettingsPath)) {
-      userSettingsString = await fs.promises.readFile(userSettingsPath, {encoding: 'utf-8'})
+      userSettingsString = await fs.promises.readFile(userSettingsPath, { encoding: 'utf-8' })
     }
 
     // Get user settings
@@ -60,8 +63,10 @@ export class CustomProfileService {
     }
 
     // Get extensions
-    const getExtensionsCommandOutput = child_process.execSync(`powershell -Command "code --user-data-dir='${path.join(constants.rootStoragePath,profileName,'data')} --extensions-dir='${path.join(constants.rootStoragePath,profileName,'extensions')}' --list-extensions"`)
+    const getExtensionsCommand = this.commandGeneratorService.generateCommand('code', `--user-data-dir='${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir='${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
+    const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand)
     const extensions = getExtensionsCommandOutput
+      .stdout
       .toString()
       .trim()
       .split(/[\n\r]/)

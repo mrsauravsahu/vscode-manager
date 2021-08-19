@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 
 import {CustomProfilesProvider} from './custom-profile-tree'
 import {CustomProfile} from './models/custom-profile'
-import { CommandGeneratorService } from './services/command-generator.service'
+import {CommandGeneratorService} from './services/command-generator.service'
 import {CustomProfileService} from './services/custom-profile.service'
-import { FeaturedProfileService } from './services/featured-profile.service'
+import {FeaturedProfileService} from './services/featured-profile.service'
 
 export type CustomProfileDetails = {
   name: string;
@@ -16,7 +16,7 @@ export type HandlerArgs = {
   context: vscode.ExtensionContext;
   treeView: vscode.TreeView<CustomProfile>;
   provider: CustomProfilesProvider;
-  services: [CustomProfileService, FeaturedProfileService,CommandGeneratorService];
+  services: [CustomProfileService, FeaturedProfileService, CommandGeneratorService];
 }
 
 export type CommandHandler = ((args: HandlerArgs) => (...args: any[]) => any)

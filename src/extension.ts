@@ -9,7 +9,7 @@ import {commands} from './commands'
 import {FeaturedProfileService} from './services/featured-profile.service'
 import {FeaturedProfilesProvider} from './providers/featured-profiles.provider'
 import {FeaturedProfileContentProvider} from './providers/featured-profile-content.provider'
-import { CommandGeneratorService } from './services/command-generator.service'
+import {CommandGeneratorService} from './services/command-generator.service'
 
 // This method is called when your extension is activated
 // your extension is activated the very first time the command is executed

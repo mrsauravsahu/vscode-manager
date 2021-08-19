@@ -16,14 +16,14 @@ export const createProfileCommand: Command = {
       separator: '-'
     })
 
-    const osType: OSType  = os.type() as any
+    const osType: OSType = os.type() as any
 
     const newProfilePath = `${rootStoragePath}/${newProfileName}`
 
     process.execSync(`mkdir "${newProfilePath}"`)
-    process.execSync(`mkdir ${osType !== 'Windows_NT' ? '-p': ''} "${path.join(newProfilePath, 'data','User')}"`)
+    process.execSync(`mkdir ${osType !== 'Windows_NT' ? '-p' : ''} "${path.join(newProfilePath, 'data', 'User')}"`)
     process.execSync(`mkdir "${path.join(newProfilePath, 'extensions')}"`)
-    fs.writeFileSync(path.join(newProfilePath,'data','User','settings.json'), `{ "window.title": "${newProfileName} — \${activeEditorShort}\${separator}\${rootName}" }`, {encoding: 'utf-8'})
+    fs.writeFileSync(path.join(newProfilePath, 'data', 'User', 'settings.json'), `{ "window.title": "${newProfileName} — \${activeEditorShort}\${separator}\${rootName}" }`, {encoding: 'utf-8'})
 
     provider.refresh()
     treeView.message = customProfileService.getAll().length === 0 ? strings.noProfiles : undefined

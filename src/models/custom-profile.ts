@@ -10,7 +10,7 @@ export class CustomProfile extends vscode.TreeItem {
     public readonly name: string,
     public readonly tag: string,
     public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-    iconPath?: string
+    iconPath?: string,
   ) {
     super(tag, collapsibleState)
     this.tooltip = this.name

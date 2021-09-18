@@ -19,6 +19,6 @@ export const commands = [
   selectProfileCommand,
   launchProfileCommand,
   selectFeaturedProfileCommand,
-  requestFeaturedProfileCommand
+  requestFeaturedProfileCommand,
 ]
 

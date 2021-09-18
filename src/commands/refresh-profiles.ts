@@ -7,5 +7,5 @@ export const refreshProfilesCommand: Command = {
     provider.refresh()
 
     treeView.message = service.getAll().length === 0 ? strings.noProfiles : undefined
-  }
+  },
 }

@@ -10,7 +10,7 @@ export const selectFeaturedProfileCommand: Command = {
     await vscode.window.withProgress({
       location: vscode.ProgressLocation.Notification,
       title: 'Retrieving Profile Details',
-      cancellable: false
+      cancellable: false,
     }, async progress => {
       progress.report({increment: 10})
 
@@ -19,5 +19,5 @@ export const selectFeaturedProfileCommand: Command = {
       progress.report({increment: 50, message: 'retrieving profile detail file...'})
       await vscode.window.showTextDocument(doc, {preview: false})
     })
-  }
+  },
 }

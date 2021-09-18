@@ -65,8 +65,8 @@ export async function activate(context: vscode.ExtensionContext) {
         context,
         provider: customProfilesProvider,
         services: [customProfileService, featuredProfilesService, commandGeneratorService],
-        treeView: customProfilesExplorer
-      })
+        treeView: customProfilesExplorer,
+      }),
     )
   }
 }

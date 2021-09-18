@@ -31,4 +31,4 @@ jobs:
         run: npm audit
 
       - name: Lint project
-        run: npm lint
+        run: npm run lint

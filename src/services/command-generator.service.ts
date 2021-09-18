@@ -1,5 +1,10 @@
 import * as os from 'os'
-import type {OSType} from '../types'
+import type { OSType } from '../types'
+
+export type GeneratedCommand = {
+  command: string,
+  shell: string
+}
 
 export class CommandGeneratorService {
   private readonly osType: OSType
@@ -16,10 +21,13 @@ export class CommandGeneratorService {
 
   public generateCommand(program: string,
     args: string | undefined,
-    extraArgs: {[key in OSType]: string | undefined} | undefined = undefined
-  ): string {
-    const commandShell: string = this.osType === 'Windows_NT' ? 'powershell -NoProfile -Command' : 'bash -c'
+    extraArgs: { [key in OSType]: string | undefined } | undefined = undefined
+  ): GeneratedCommand {
+    const shell: string = this.osType === 'Windows_NT' ? 'powershell.exe' : 'bash'
 
-    return `${commandShell} "${program} ${extraArgs ? extraArgs[this.osType] ?? '' : ''} ${args ?? ''}"`
+    return {
+      command: `${program} ${extraArgs ? extraArgs[this.osType] ?? '' : ''} ${args ?? ''}`,
+      shell,
+    }
   }
 }

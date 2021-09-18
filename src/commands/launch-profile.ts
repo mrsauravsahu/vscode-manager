@@ -11,7 +11,7 @@ export const launchProfileCommand: Command = {
   handler: ({service}) => (arg: CustomProfile | {path: string}) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
     title: 'Launching Custom Profile',
-    cancellable: false
+    cancellable: false,
   }, async progress => {
     if (arg instanceof CustomProfile) {
       // Custom profile launch
@@ -49,7 +49,7 @@ export const launchProfileCommand: Command = {
       const {
         name: profileName,
         userSettings,
-        extensions
+        extensions,
       } = profileDetailsJson as CustomProfileDetails
 
       // TODO: Check if profile exists
@@ -67,7 +67,7 @@ export const launchProfileCommand: Command = {
         await fs.promises.writeFile(
           `${rootStoragePath}/${profileName}/data/User/settings.json`,
           JSON.stringify(userSettings, undefined, 2),
-          {encoding: 'utf-8'}
+          {encoding: 'utf-8'},
         )
 
         progress.report({increment: 50, message: 'installing extensions...'})
@@ -76,7 +76,7 @@ export const launchProfileCommand: Command = {
           const extension = extensions[index]
           await child_process.exec(`code --user-data-dir='${rootStoragePath}/${profileName}/data' --extensions-dir='${rootStoragePath}/${profileName}/extensions' --install-extension ${extension}`)
           progress.report({
-            increment: 50 + (((index + 1) / extensions.length) / 50), message: `installing extension '${extension}' (${index + 1}/${extensions.length})...`
+            increment: 50 + (((index + 1) / extensions.length) / 50), message: `installing extension '${extension}' (${index + 1}/${extensions.length})...`,
           })
         }
 
@@ -95,5 +95,5 @@ export const launchProfileCommand: Command = {
     }
 
     return Promise.resolve()
-  })
+  }),
 }

@@ -17,9 +17,7 @@ export class CustomProfileService {
     }
 
     const rootItems = fs.readdirSync(rootStoragePath, {withFileTypes: true})
-    const profileNames = rootItems.filter(item => {
-      return item.isDirectory()
-    })
+    const profileNames = rootItems.filter(item => item.isDirectory())
       .map(item => item.name)
 
     const profileList = [
@@ -32,11 +30,11 @@ export class CustomProfileService {
         profile.command = {
           command: constants.commands.selectProfile,
           title: 'Select Custom Profile',
-          arguments: [profile]
+          arguments: [profile],
         }
 
         return profile
-      })
+      }),
     ]
 
     return profileList
@@ -69,7 +67,7 @@ export class CustomProfileService {
     const profile = {
       name: profileName,
       userSettings,
-      extensions
+      extensions,
     }
 
     return JSON.stringify(profile, undefined, 2)

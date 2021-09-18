@@ -166,7 +166,7 @@
 		"xo": "^0.44.0"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
+		"axios": "^0.21.4",
 		"child-process-promise": "^2.2.1",
 		"json5": "^2.2.0",
 		"unique-names-generator": "^4.5.0"

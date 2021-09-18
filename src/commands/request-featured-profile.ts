@@ -8,5 +8,5 @@ export const requestFeaturedProfileCommand: Command = {
   handler: () => async () => {
     const uri = vscode.Uri.parse('https://github.com/mrsauravsahu/vscode-manager/tree/cool/featured')
     await vscode.env.openExternal(uri)
-  }
+  },
 }

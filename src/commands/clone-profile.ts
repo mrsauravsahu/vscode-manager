@@ -18,5 +18,5 @@ export const cloneProfileCommand: Command = {
 
     provider.refresh()
     await vscode.window.showInformationMessage(`Cloned profile '${name}' to '${name}-copy'`)
-  }
+  },
 }

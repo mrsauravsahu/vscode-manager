@@ -12,7 +12,7 @@ export const launchProfileCommand: Command = {
   handler: ({ services: [customProfileService, _, commandGeneratorService] }) => (arg: CustomProfile | { fsPath: string }) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
     title: 'Launching Custom Profile',
-    cancellable: false
+    cancellable: false,
   }, async progress => {
     if (arg instanceof CustomProfile) {
       // Custom profile launch
@@ -51,7 +51,7 @@ export const launchProfileCommand: Command = {
       const {
         name: profileName,
         userSettings,
-        extensions
+        extensions,
       } = profileDetailsJson as CustomProfileDetails
 
       const profileRootPath = path.join(rootStoragePath, profileName)
@@ -77,7 +77,7 @@ export const launchProfileCommand: Command = {
         await fs.promises.writeFile(
           path.join(rootStoragePath, profileName, 'data', 'User', 'settings.json'),
           JSON.stringify(userSettings, undefined, 2),
-          { encoding: 'utf-8' }
+          {encoding: 'utf-8'},
         )
 
         progress.report({ increment: 50, message: 'installing extensions...' })
@@ -108,5 +108,5 @@ export const launchProfileCommand: Command = {
     }
 
     return Promise.resolve()
-  })
+  }),
 }

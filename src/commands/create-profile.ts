@@ -12,7 +12,7 @@ export const createProfileCommand: Command = {
   handler: ({ provider, services: [customProfileService, _, commandGeneratorService], treeView }) => async () => {
     const newProfileName = uniqueNamesGenerator({
       dictionaries: [adjectives, animals],
-      separator: '-'
+      separator: '-',
     })
 
     const newProfilePath = path.join(rootStoragePath, newProfileName)
@@ -31,5 +31,5 @@ export const createProfileCommand: Command = {
     treeView.message = customProfileService.getAll().length === 0 ? strings.noProfiles : undefined
 
     await vscode.window.showInformationMessage(`Created new custom profile: '${newProfileName}'`)
-  }
+  },
 }

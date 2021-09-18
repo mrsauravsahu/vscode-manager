@@ -15,28 +15,28 @@ export const commands = {
   cloneProfile: `${app}.commands.cloneProfile`,
   refreshProfiles: `${app}.commands.refreshProfiles`,
   requestFeaturedProfile: `${app}.commands.requestFeaturedProfile`,
-  copyAlias: `${app}.commands.copyAlias`
+  copyAlias: `${app}.commands.copyAlias`,
 }
 
 export const views = {
-  featuredProfiles: `${app}.views.treeViews.featuredProfiles`
+  featuredProfiles: `${app}.views.treeViews.featuredProfiles`,
 }
 
 export const models = {
-  profile: `${app}.models.profile`
+  profile: `${app}.models.profile`,
 }
 
 export const profiles = {
-  default: 'clean-slate'
+  default: 'clean-slate',
 }
 
 export const strings = {
-  noProfiles: 'No custom profiles found... Let\'s create one now.'
+  noProfiles: 'No custom profiles found... Let\'s create one now.',
 }
 
 export const uriSchemes = {
   customProfile: `${app}.uri.customProfile`,
-  featuredProfile: `${app}.uri.featuredProfile`
+  featuredProfile: `${app}.uri.featuredProfile`,
 }
 
 export const featuredProfileUrl = 'http://api.github.com/repos/mrsauravsahu/vscode-manager/contents/featured'

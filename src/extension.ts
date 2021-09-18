@@ -21,7 +21,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
   vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider)
   const customProfilesExplorer = vscode.window.createTreeView('customProfiles', {
-    treeDataProvider: customProfilesProvider
+    treeDataProvider: customProfilesProvider,
   })
 
   if (customProfileService.getAll().length === 0) {
@@ -48,13 +48,13 @@ export async function activate(context: vscode.ExtensionContext) {
   const featuredProfilesService = new FeaturedProfileService()
   const featuredProfilesProvider = new FeaturedProfilesProvider(featuredProfilesService)
   vscode.window.createTreeView(constants.views.featuredProfiles, {
-    treeDataProvider: featuredProfilesProvider
+    treeDataProvider: featuredProfilesProvider,
   })
 
   await featuredProfilesProvider.refresh()
 
   context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.uriSchemes.featuredProfile,
-    new FeaturedProfileContentProvider(featuredProfilesService)
+    new FeaturedProfileContentProvider(featuredProfilesService),
   ))
 
   // Register commands

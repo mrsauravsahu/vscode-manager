@@ -28,5 +28,5 @@ export const deleteProfileCommand: Command = {
         treeView.message = strings.noProfiles
       }
     }
-  }
+  },
 }

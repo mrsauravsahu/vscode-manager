@@ -14,5 +14,5 @@ export const copyAliasCommand: Command = {
 
     await vscode.env.clipboard.writeText(aliasCommand)
     await vscode.window.showInformationMessage('Copied alias command to the clipboard')
-  }
+  },
 }

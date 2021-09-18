@@ -42,7 +42,7 @@ export class FeaturedProfileService {
         profile.command = {
           command: constants.commands.selectFeaturedProfile,
           title: 'Select Featured Profile',
-          arguments: [profile]
+          arguments: [profile],
         }
 
         return profile

@@ -9,12 +9,14 @@ import {commands} from './commands'
 import {FeaturedProfileService} from './services/featured-profile.service'
 import {FeaturedProfilesProvider} from './providers/featured-profiles.provider'
 import {FeaturedProfileContentProvider} from './providers/featured-profile-content.provider'
+import {CommandGeneratorService} from './services/command-generator.service'
 
 // This method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
   // TODO: Make rootPath cross platform
-  const customProfileService = new CustomProfileService()
+  const commandGeneratorService = new CommandGeneratorService()
+  const customProfileService = new CustomProfileService(commandGeneratorService)
   const customProfilesProvider = new CustomProfilesProvider(context, customProfileService)
 
   vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider)
@@ -62,7 +64,7 @@ export async function activate(context: vscode.ExtensionContext) {
       command.handler({
         context,
         provider: customProfilesProvider,
-        service: customProfileService,
+        services: [customProfileService, featuredProfilesService, commandGeneratorService],
         treeView: customProfilesExplorer,
       }),
     )

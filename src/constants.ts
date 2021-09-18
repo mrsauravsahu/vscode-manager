@@ -1,8 +1,9 @@
 import * as os from 'os'
+import * as path from 'path'
 
 export const app = 'vscode-manager'
 
-export const rootStoragePath = `${os.homedir()}/.config/${app}`
+export const rootStoragePath = path.join(os.homedir(), '.config', app)
 
 export const commands = {
   launchProfile: `${app}.commands.launchProfile`,

@@ -10,6 +10,7 @@
 The extension is available on the Marketplace - [here](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
 
 ## What's New? 🎉 🥳 - changelog
+- **v2.0.0** Feat: Support for Windows!
 - **v1.1.4** Fix: Dependabot alert - axios
 - **v1.1.3** Audit fix: Fix all npm audit failures
 - **v1.1.2** Fix: Extension activation when offline

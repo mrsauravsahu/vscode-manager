@@ -8,7 +8,7 @@ import {CustomProfile} from '../models/custom-profile'
 
 export const deleteProfileCommand: Command = {
   name: commands.deleteProfile,
-  handler: ({service, treeView, provider}) => async (customProfile: CustomProfile) => {
+  handler: ({services: [customProfileService, ..._], treeView, provider}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
     if (name === profiles.default) {
       await vscode.window.showErrorMessage('Cannot delete the default profile')
@@ -24,7 +24,7 @@ export const deleteProfileCommand: Command = {
 
       await vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)
 
-      if (service.getAll().length === 0) {
+      if (customProfileService.getAll().length === 0) {
         treeView.message = strings.noProfiles
       }
     }

@@ -1,11 +1,15 @@
 import * as fs from 'fs'
-import * as child_process from 'child_process'
+import * as path from 'path'
+import * as child_process from 'child-process-promise'
 import * as vscode from 'vscode'
 import * as json5 from 'json5'
 import * as constants from '../constants'
 import {CustomProfile} from '../models/custom-profile'
+import {CommandGeneratorService} from './command-generator.service'
 
 export class CustomProfileService {
+  public constructor(private readonly commandGeneratorService: CommandGeneratorService) {}
+
   getAll(): CustomProfile[] {
     const {rootStoragePath} = constants
 
@@ -41,7 +45,7 @@ export class CustomProfileService {
   }
 
   async generateProfileJson(profileName: string): Promise<string> {
-    const userSettingsPath = `${constants.rootStoragePath}/${profileName}/data/User/settings.json`
+    const userSettingsPath = path.join(constants.rootStoragePath, profileName, 'data', 'User', 'settings.json')
 
     let userSettingsString = '{}'
     if (fs.existsSync(userSettingsPath)) {
@@ -57,8 +61,10 @@ export class CustomProfileService {
     }
 
     // Get extensions
-    const getExtensionsCommandOutput = child_process.execSync(`code --user-data-dir='${constants.rootStoragePath}/${profileName}/data' --extensions-dir='${constants.rootStoragePath}/${profileName}/extensions' --list-extensions`)
+    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
+    const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand, {shell})
     const extensions = getExtensionsCommandOutput
+      .stdout
       .toString()
       .trim()
       .split(/[\n\r]/)

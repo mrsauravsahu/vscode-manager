@@ -19,16 +19,16 @@ jobs:
       - name: Checkout to branch
         uses: actions/checkout@v2
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.0.1
-        with:
-          version: 6.7.1
-          run_install: true
-
       - name: Setup node.js
         uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Audit check
+        run: npm audit
+
       - name: Lint project
-        run: pnpm lint
+        run: npm lint

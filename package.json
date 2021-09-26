@@ -52,6 +52,10 @@
 				{
 					"command": "vscode-manager.commands.copyAlias",
 					"when": "view == customProfiles && viewItem == customProfile"
+				},
+				{
+					"command": "vscode-manager.commands.cloneProfile",
+					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
 			"view/title": [
@@ -75,7 +79,13 @@
 		"commands": [
 			{
 				"command": "vscode-manager.commands.launchProfile",
-				"title": "Launch Custom Profile"
+				"title": "Launch Custom Profile",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "vscode-manager.commands.cloneProfile",
+				"title": "Clone Profile",
+				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
 				"command": "vscode-manager.commands.deleteProfile",

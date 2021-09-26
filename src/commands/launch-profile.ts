@@ -11,7 +11,7 @@ export const launchProfileCommand: Command = {
   name: commands.launchProfile,
   handler: ({services: [customProfileService, _, commandGeneratorService]}) => (arg: CustomProfile | {fsPath: string}) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
-    title: 'Launching Custom Profile',
+    title: 'Cloning Custom Profile',
     cancellable: false,
   }, async progress => {
     if (arg instanceof CustomProfile) {

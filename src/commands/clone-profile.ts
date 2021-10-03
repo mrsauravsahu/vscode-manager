@@ -49,7 +49,7 @@ export const cloneProfileCommand: Command = {
       canPickMany: true,
     }) ?? []
 
-    const installExtensionPromises = selectedExtensions.map(async extension => new Promise<void>(async resolve => {
+    const installExtensionPromises = selectedExtensions.map(async extension => {
       const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(clonedProfilePath, 'data')}' --extensions-dir '${path.join(clonedProfilePath, 'extensions')}' --install-extension ${extension}`)
 
       progress.report({
@@ -57,11 +57,11 @@ export const cloneProfileCommand: Command = {
         message: `Installing extension '${extension}' (${finishedExtensionCount}/${selectedExtensions.length}) ...`,
       })
 
-      await child_process.exec(extensionInstallCommand, {shell})
-
-      finishedExtensionCount += 1
-      resolve()
-    }))
+      return child_process.exec(extensionInstallCommand, {shell})
+        .then(() => {
+          finishedExtensionCount += 1
+        })
+    })
 
     await Promise.all(installExtensionPromises)
     provider.refresh()

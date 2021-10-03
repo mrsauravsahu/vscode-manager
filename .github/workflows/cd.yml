@@ -1,19 +1,13 @@
 name: "ci-cd"
 
 on:
-  pull_request:
-    branches:
-      - cool
   push:
     branches:
       - cool
 
-env:
-  NODE_VERSION: "14.17.0"
-
 jobs:
   ci_cd:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout to branch
@@ -22,13 +16,10 @@ jobs:
       - name: Setup node.js
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          node-version: ${{ secrets.NODE_VERSION }}
 
       - name: Install packages
         run: npm ci
-
-      - name: Lint project
-        run: npm run lint
       
       - name: Calculate version
         id: calculateVersion

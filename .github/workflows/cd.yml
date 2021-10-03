@@ -1,12 +1,12 @@
-name: "ci"
+name: "cd"
 
 on:
-  pull_request:
+  push:
     branches:
       - cool
 
 jobs:
-  ci:
+  cd:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,9 +20,6 @@ jobs:
 
       - name: Install packages
         run: npm ci
-
-      - name: Lint project
-        run: npm run lint
       
       - name: Calculate version
         id: calculateVersion
@@ -33,3 +30,14 @@ jobs:
 
       - name: Build VSIX package
         run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
+
+      - name: Publish extension package
+        env:
+          VSCODE_MARKETPLACE_TOKEN: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
+        run: npm run vsce -- publish -p $VSCODE_MARKETPLACE_TOKEN
+
+      - uses: actions/upload-artifact@v2
+        name: Upload artifact
+        with:
+          name: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
+          path: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix

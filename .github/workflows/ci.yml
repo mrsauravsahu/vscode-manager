@@ -1,4 +1,4 @@
-name: "ci-cd"
+name: "ci"
 
 on:
   pull_request:
@@ -6,7 +6,7 @@ on:
       - cool
 
 jobs:
-  ci_cd:
+  ci:
     runs-on: ubuntu-latest
 
     steps:

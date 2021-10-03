@@ -1,4 +1,4 @@
-name: "ci-cd"
+name: "cd"
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - cool
 
 jobs:
-  ci_cd:
+  cd:
     runs-on: ubuntu-latest
 
     steps:

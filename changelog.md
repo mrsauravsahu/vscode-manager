@@ -1,4 +1,10 @@
 # Changelog
+## **v2.1.2**
+Fix: NPM Audit fixes and bump Node.js to LTS (16.13.0)
+## **v2.1.1**
+Dependabot: nth-check from 2.0.0 to 2.0.1
+## **v2.1.0**
+Feat: Clone profiles
 ## **v2.0.0**
 Feat: Support for Windows!
 ## **v1.1.4**

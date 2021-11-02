@@ -6,9 +6,11 @@ import * as json5 from 'json5'
 import * as constants from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {CommandGeneratorService} from './command-generator.service'
+import {CommandMetaService} from './command-meta.service'
 
 export class CustomProfileService {
-  public constructor(private readonly commandGeneratorService: CommandGeneratorService) {}
+  public constructor(private readonly commandGeneratorService: CommandGeneratorService,
+    private readonly commandMetaService: CommandMetaService) {}
 
   getAll(): CustomProfile[] {
     const {rootStoragePath} = constants
@@ -60,8 +62,10 @@ export class CustomProfileService {
       await vscode.window.showInformationMessage('The profile contains invalid user settings.')
     }
 
+    const codeBin = await this.commandMetaService.getProgramBasedOnMetaAsync('code')
+
     // Get extensions
-    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
+    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
     const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand, {shell})
     const extensions = getExtensionsCommandOutput
       .stdout

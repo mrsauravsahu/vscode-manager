@@ -10,13 +10,15 @@ import {FeaturedProfileService} from './services/featured-profile.service'
 import {FeaturedProfilesProvider} from './providers/featured-profiles.provider'
 import {FeaturedProfileContentProvider} from './providers/featured-profile-content.provider'
 import {CommandGeneratorService} from './services/command-generator.service'
+import {CommandMetaService} from './services/command-meta.service'
 
 // This method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
   // TODO: Make rootPath cross platform
+  const commandMetaService = new CommandMetaService()
   const commandGeneratorService = new CommandGeneratorService()
-  const customProfileService = new CustomProfileService(commandGeneratorService)
+  const customProfileService = new CustomProfileService(commandGeneratorService, commandMetaService)
   const customProfilesProvider = new CustomProfilesProvider(context, customProfileService)
 
   vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider)
@@ -45,8 +47,8 @@ export async function activate(context: vscode.ExtensionContext) {
   customProfilesProvider.refresh()
 
   /* FEATURED PROFILES SECTION */
-  const featuredProfilesService = new FeaturedProfileService()
-  const featuredProfilesProvider = new FeaturedProfilesProvider(featuredProfilesService)
+  const featuredProfileService = new FeaturedProfileService()
+  const featuredProfilesProvider = new FeaturedProfilesProvider(featuredProfileService)
   vscode.window.createTreeView(constants.views.featuredProfiles, {
     treeDataProvider: featuredProfilesProvider,
   })
@@ -54,7 +56,7 @@ export async function activate(context: vscode.ExtensionContext) {
   await featuredProfilesProvider.refresh()
 
   context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider(constants.uriSchemes.featuredProfile,
-    new FeaturedProfileContentProvider(featuredProfilesService),
+    new FeaturedProfileContentProvider(featuredProfileService),
   ))
 
   // Register commands
@@ -64,7 +66,12 @@ export async function activate(context: vscode.ExtensionContext) {
       command.handler({
         context,
         provider: customProfilesProvider,
-        services: [customProfileService, featuredProfilesService, commandGeneratorService],
+        services: {
+          customProfileService,
+          featuredProfileService,
+          commandGeneratorService,
+          commandMetaService,
+        },
         treeView: customProfilesExplorer,
       }),
     )

@@ -9,7 +9,7 @@ import type {Command} from '../types'
 
 export const createProfileCommand: Command = {
   name: commands.createProfile,
-  handler: ({provider, services: [customProfileService, _, commandGeneratorService], treeView}) => async () => {
+  handler: ({provider, services: {customProfileService, commandGeneratorService}, treeView}) => async () => {
     const newProfileName = uniqueNamesGenerator({
       dictionaries: [adjectives, animals],
       separator: '-',

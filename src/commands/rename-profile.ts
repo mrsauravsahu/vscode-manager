@@ -8,7 +8,7 @@ import {Command} from '../types'
 
 export const renameProfileCommand: Command = {
   name: commands.renameProfile,
-  handler: ({services: [_, __, commandGeneratorService]}) => async (customProfile: CustomProfile) => {
+  handler: ({services: {commandGeneratorService}}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
 
     const value = await vscode.window.showInputBox({

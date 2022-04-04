@@ -5,6 +5,9 @@ on:
     branches:
       - cool
 
+env: 
+  MAIN_BRANCH: cool
+
 jobs:
   ci:
     uses: mrsauravsahu/actions/.github/workflows/ci-vscode-extension.yml@feat/ci-vscode-extension

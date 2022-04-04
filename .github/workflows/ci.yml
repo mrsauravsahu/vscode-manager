@@ -10,4 +10,4 @@ env:
 
 jobs:
   ci:
-    uses: mrsauravsahu/actions/.github/workflows/ci-vscode-extension.yml@ci-vscode-extension.yml/v0.3.0
+    uses: mrsauravsahu/actions/.github/workflows/ci-vscode-extension.yml@ci-vscode-extension/v0.3.0

@@ -6,7 +6,7 @@ on:
       - cool
 
 env: 
-  MAIN_BRANCH: cool
+  MAIN_BRANCH: refs/heads/cool
 
 jobs:
   ci:

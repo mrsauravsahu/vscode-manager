@@ -7,15 +7,4 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Calculate node version
-        id: calculateNodeVersion
-        run: |
-          NODE_VERSION=`cat .nvmrc`
-          echo "::set-output name=NodeVersion::$NODE_VERSION"
-          echo "node version = v$NODE_VERSION"
-      - uses: mrsauravsahu/actions/.github/workflows/ci-vscode-extension.yml@feat/ci-vscode-extension
-        name: CI for VSCode Extension
-        with:
-          node-version: ${{ steps.calculateNodeVersion.outputs.NodeVersion }}
+    uses: mrsauravsahu/actions/.github/workflows/ci-vscode-extension.yml@feat/ci-vscode-extension

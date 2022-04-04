@@ -18,5 +18,4 @@ jobs:
       - uses: mrsauravsahu/actions@feat/ci-vscode-extension
         name: CI for VSCode Extension
         with:
-          node-version: ${{ steps.calculateNodeVersion.outputs.NodeVersion }
-
+          node-version: ${{ steps.calculateNodeVersion.outputs.NodeVersion }}

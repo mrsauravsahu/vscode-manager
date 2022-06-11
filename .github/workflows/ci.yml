@@ -3,10 +3,10 @@ name: "ci"
 on:
   pull_request:
     branches:
-      - cool
+      - main
   push:
     branches:
-      - cool
+      - main
 
 env:
   NODE_VERSION: "14.17.0"

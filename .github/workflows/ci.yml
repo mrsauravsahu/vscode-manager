@@ -49,12 +49,12 @@ jobs:
 
       - uses: rickstaa/action-create-tag@v1
         name: Create tag
-        if: ${{ github.ref }} == ${{ env.MAIN_BRANCH }}
+        if: ${{ github.ref_name }} == ${{ env.MAIN_BRANCH }}
         with:
           tag: v${{ steps.calculateVersion.outputs.AppVersion }}
 
       - name: Create Release
-        if: ${{ github.ref }} == ${{ env.MAIN_BRANCH }}
+        if: ${{ github.ref_name }} == ${{ env.MAIN_BRANCH }}
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}

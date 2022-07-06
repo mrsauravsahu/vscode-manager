@@ -46,18 +46,3 @@ jobs:
 
       - name: Build VSIX package
         run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
-
-      - uses: rickstaa/action-create-tag@v1
-        name: Create tag
-        if: ${{ github.ref_name }} == ${{ env.MAIN_BRANCH }}
-        with:
-          tag: v${{ steps.calculateVersion.outputs.AppVersion }}
-
-      - name: Create Release
-        if: ${{ github.ref_name }} == ${{ env.MAIN_BRANCH }}
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v${{ steps.calculateVersion.outputs.AppVersion }}
-          release: v${{ steps.calculateVersion.outputs.AppVersion }}-test
-          artifacts: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix

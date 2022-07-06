@@ -36,8 +36,15 @@ jobs:
           VSCODE_MARKETPLACE_TOKEN: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
         run: npm run vsce -- publish -p $VSCODE_MARKETPLACE_TOKEN
 
-      - uses: actions/upload-artifact@v2
-        name: Upload artifact
+      - uses: rickstaa/action-create-tag@v1
+        name: Create tag
         with:
-          name: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
-          path: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
+          tag: v${{ steps.calculateVersion.outputs.AppVersion }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ steps.calculateVersion.outputs.AppVersion }}
+          release: v${{ steps.calculateVersion.outputs.AppVersion }}-test
+          artifacts: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix

@@ -6,7 +6,7 @@ import {CustomProfile} from '../models/custom-profile'
 
 export class FeaturedProfileService {
   async getProfileDetails(profile: string): Promise<string> {
-    const url = `https://raw.githubusercontent.com/mrsauravsahu/vscode-manager/cool/featured/${profile}`
+    const url = `https://raw.githubusercontent.com/mrsauravsahu/vscode-manager/main/featured/${profile}`
     const featuredProfileListResponse = await axios({url, responseType: 'text'})
     const profileDetails = (featuredProfileListResponse.data)
 
@@ -18,7 +18,7 @@ export class FeaturedProfileService {
   }
 
   async getAll(): Promise<CustomProfile[]> {
-    const branchRef = 'cool'
+    const branchRef = 'main'
     const url = `${constants.featuredProfileUrl}?ref=${branchRef}`
     let featuredProfileListResponse
 

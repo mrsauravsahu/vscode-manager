@@ -3,7 +3,7 @@ name: "cd"
 on:
   push:
     branches:
-      - cool
+      - main
 
 jobs:
   cd:

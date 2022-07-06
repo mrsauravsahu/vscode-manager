@@ -3,10 +3,10 @@ name: "ci"
 on:
   pull_request:
     branches:
-      - cool
+      - main
 
 env: 
-  MAIN_BRANCH: refs/heads/cool
+  MAIN_BRANCH: refs/heads/main
 
 jobs:
   ci:

@@ -9,16 +9,9 @@
 
 The extension is available on the Marketplace - [here](https://marketplace.visualstudio.com/items?itemName=mrsauravsahu.vscode-manager).
 
-## What's New? 🎉 🥳 - changelog
-- **v1.1.0** Bug fix: Launch custom profiles from `.vscode/profile.json`
-- **v1.0.0** Add featured profile section to show profiles from Github
-- **v0.0.7** Bug fix: Refresh Explorer after a profile is deleted
-- **v0.0.6** Create and share custom profile through a `.vscode/profile.json` file
-- **v0.0.5** View generated profile details file
-- **v0.0.4** Create new isolated profile with default settings
+## 🎉 🥳 What's New?  👉 [changelog ](./changelog.md)
 
 ![Screenshot of the 'Custom Profiles for VSCode' Extension](https://user-images.githubusercontent.com/9134050/127419219-aac7e8f6-e7d0-44ea-b50f-5ec2ef3cea15.png)
-
 
 ## Coming soon 😎
 - Clone profiles

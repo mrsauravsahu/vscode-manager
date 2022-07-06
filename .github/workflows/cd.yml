@@ -1,0 +1,50 @@
+name: "cd"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cd:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to branch
+        uses: actions/checkout@v2
+
+      - name: Setup node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ secrets.NODE_VERSION }}
+
+      - name: Install packages
+        run: npm ci
+      
+      - name: Calculate version
+        id: calculateVersion
+        run: |
+          APP_VERSION=`cat package.json | jq ".version" -M | sed 's/\"//g'`
+          echo "::set-output name=AppVersion::$APP_VERSION"
+          echo "app version = v$APP_VERSION"
+
+      - name: Build VSIX package
+        run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
+
+      - name: Publish extension package
+        env:
+          VSCODE_MARKETPLACE_TOKEN: ${{ secrets.VSCODE_MARKETPLACE_TOKEN }}
+        run: npm run vsce -- publish -p $VSCODE_MARKETPLACE_TOKEN
+
+      - uses: rickstaa/action-create-tag@v1
+        name: Create tag
+        with:
+          tag: v${{ steps.calculateVersion.outputs.AppVersion }}
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: v${{ steps.calculateVersion.outputs.AppVersion }}
+          release: v${{ steps.calculateVersion.outputs.AppVersion }}-test
+          artifacts: custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix

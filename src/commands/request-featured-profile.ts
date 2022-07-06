@@ -6,7 +6,7 @@ import {Command} from '../types'
 export const requestFeaturedProfileCommand: Command = {
   name: commands.requestFeaturedProfile,
   handler: () => async () => {
-    const uri = vscode.Uri.parse('https://github.com/mrsauravsahu/vscode-manager/tree/cool/featured')
+    const uri = vscode.Uri.parse('https://github.com/mrsauravsahu/vscode-manager/tree/main/featured')
     await vscode.env.openExternal(uri)
-  }
+  },
 }

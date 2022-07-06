@@ -4,7 +4,7 @@
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
-	"version": "1.1.2",
+	"version": "2.2.1",
 	"repository": {
 		"url": "https://github.com/mrsauravsahu/vscode-manager",
 		"type": "git"
@@ -52,6 +52,10 @@
 				{
 					"command": "vscode-manager.commands.copyAlias",
 					"when": "view == customProfiles && viewItem == customProfile"
+				},
+				{
+					"command": "vscode-manager.commands.cloneProfile",
+					"when": "view == customProfiles && viewItem == customProfile"
 				}
 			],
 			"view/title": [
@@ -75,7 +79,13 @@
 		"commands": [
 			{
 				"command": "vscode-manager.commands.launchProfile",
-				"title": "Launch Custom Profile"
+				"title": "Launch Custom Profile",
+				"enablement": "view == customProfiles && viewItem == customProfile"
+			},
+			{
+				"command": "vscode-manager.commands.cloneProfile",
+				"title": "Clone Profile",
+				"enablement": "view == customProfiles && viewItem == customProfile"
 			},
 			{
 				"command": "vscode-manager.commands.deleteProfile",
@@ -147,26 +157,27 @@
 		"watch": "tsc -watch -p ./",
 		"pretest": "npm run compile && npm run lint",
 		"lint": "xo",
-		"test": "node ./out/test/run-test.js"
+		"test": "node ./out/test/run-test.js",
+		"build": "(rm -rf out || true) && mkdir out && cp package.json out && vsce package",
+		"vsce": "vsce"
 	},
 	"devDependencies": {
 		"@types/child-process-promise": "^2.2.1",
 		"@types/glob": "^7.1.3",
 		"@types/mocha": "^8.0.4",
 		"@types/node": "^12.11.7",
-		"@types/superagent": "^4.1.11",
 		"@types/vscode": "^1.56.0",
 		"all-contributors-cli": "^6.20.0",
 		"follow-redirects": "^1.10.0",
 		"glob": "^7.1.6",
 		"minimist": "^1.2.5",
-		"mocha": "^8.2.1",
 		"typescript": "^4.1.3",
+		"vsce": "^2.9.2",
 		"vscode-test": "^1.5.0",
-		"xo": "^0.40.2"
+		"xo": "^0.44.0"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
+		"axios": "^0.21.4",
 		"child-process-promise": "^2.2.1",
 		"json5": "^2.2.0",
 		"unique-names-generator": "^4.5.0"

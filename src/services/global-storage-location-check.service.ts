@@ -7,7 +7,7 @@ export class GlobalStorageLocationCheckService {
     private readonly extensionMetaService: ExtensionMetaService,
   ) {}
 
-  async checkProfilesLocationAsync() {
+  async checkProfilesLocationAsync(): Promise<void> {
     if (fs.existsSync(this.extensionMetaService.globalProfilesLocation)) {
       return
     }
@@ -16,7 +16,7 @@ export class GlobalStorageLocationCheckService {
       await fs.mkdir(this.extensionMetaService.globalProfilesLocation)
       await vscode.window.showInformationMessage(`Created root profiles location at '${this.extensionMetaService.globalProfilesLocation}'.`)
     } catch {
-      await vscode.window.showInformationMessage(`Unable to create root location for custom profiles. Please create the folder at '${this.extensionMetaService.globalProfilesLocation}' manually.`)
+      throw new Error(`Unable to create root location for custom profiles. Please create the folder at '${this.extensionMetaService.globalProfilesLocation}' manually.`)
     }
   }
 }

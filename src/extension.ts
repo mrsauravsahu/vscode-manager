@@ -11,15 +11,20 @@ import {FeaturedProfilesProvider} from './providers/featured-profiles.provider'
 import {FeaturedProfileContentProvider} from './providers/featured-profile-content.provider'
 import {CommandGeneratorService} from './services/command-generator.service'
 import {CommandMetaService} from './services/command-meta.service'
+import { GlobalStorageMigrationService } from './services/global-storage-migration.service'
 
 // This method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
   // TODO: Make rootPath cross platform
+  // TODO: Use a DI container to register and use dependencies
   const commandMetaService = new CommandMetaService()
   const commandGeneratorService = new CommandGeneratorService()
   const customProfileService = new CustomProfileService(commandGeneratorService, commandMetaService)
   const customProfilesProvider = new CustomProfilesProvider(context, customProfileService)
+
+  await new GlobalStorageMigrationService(commandGeneratorService)
+    .migrateToVSCodeGlobalStorageUri(context.globalStorageUri);
 
   vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider)
   const customProfilesExplorer = vscode.window.createTreeView('customProfiles', {

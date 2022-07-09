@@ -13,10 +13,11 @@ export class GlobalStorageLocationCheckService {
     }
 
     try {
-      await fs.mkdir(this.extensionMetaService.globalProfilesLocation)
-      await vscode.window.showInformationMessage(`Created root profiles location at '${this.extensionMetaService.globalProfilesLocation}'.`)
+      await vscode.window.showInformationMessage('Creating profiles folder.')
+      await fs.mkdir(this.extensionMetaService.globalProfilesLocation, {recursive: true})
+      await vscode.window.showInformationMessage(`Created profiles folder at '${this.extensionMetaService.globalProfilesLocation}'.`)
     } catch {
-      throw new Error(`Unable to create root location for custom profiles. Please create the folder at '${this.extensionMetaService.globalProfilesLocation}' manually.`)
+      throw new Error(`Unable to create folder for custom profiles. Please create the folder at '${this.extensionMetaService.globalProfilesLocation}' manually.`)
     }
   }
 }

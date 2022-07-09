@@ -3,13 +3,13 @@ import * as path from 'path'
 import * as child_process from 'child-process-promise'
 import * as vscode from 'vscode'
 
-import {commands, rootStoragePath} from '../constants'
+import {commands} from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {Command} from '../types'
 
 export const cloneProfileCommand: Command = {
   name: commands.cloneProfile,
-  handler: ({provider, services: {commandGeneratorService, commandMetaService}}) => async (customProfile: CustomProfile) => vscode.window.withProgress({
+  handler: ({provider, services: {extensionMetaService, commandGeneratorService, commandMetaService}}) => async (customProfile: CustomProfile) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
     title: 'Clone',
     cancellable: false,
@@ -18,9 +18,9 @@ export const cloneProfileCommand: Command = {
     const currentDate = new Date()
     const cloneProfileName = `${name}-${currentDate.getFullYear()}${currentDate.getMonth().toString().padStart(2, '0')}${currentDate.getDate().toString().padStart(2, '0')}-${currentDate.getTime()}`
 
-    const originalProfilePath = path.join(rootStoragePath, name)
+    const originalProfilePath = path.join(extensionMetaService.globalProfilesLocation, name)
 
-    const clonedProfilePath = path.join(rootStoragePath, cloneProfileName)
+    const clonedProfilePath = path.join(extensionMetaService.globalProfilesLocation, cloneProfileName)
 
     const createCloneProfileCommand = commandGeneratorService.generateCommand('mkdir', `${clonedProfilePath}/data/User`, {Linux: '-p', Darwin: '-p', Windows_NT: undefined})
 

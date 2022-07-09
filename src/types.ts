@@ -6,6 +6,7 @@ import {CommandGeneratorService} from './services/command-generator.service'
 import {CommandMetaService} from './services/command-meta.service'
 import {CustomProfileService} from './services/custom-profile.service'
 import {FeaturedProfileService} from './services/featured-profile.service'
+import {ExtensionMetaService} from './services/extension-meta.service'
 
 export type CustomProfileDetails = {
   name: string;
@@ -18,6 +19,7 @@ export type HandlerArgs = {
   treeView: vscode.TreeView<CustomProfile>;
   provider: CustomProfilesProvider;
   services: {
+    extensionMetaService: ExtensionMetaService;
     customProfileService: CustomProfileService;
     featuredProfileService: FeaturedProfileService;
     commandGeneratorService: CommandGeneratorService;

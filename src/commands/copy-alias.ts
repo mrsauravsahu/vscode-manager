@@ -1,14 +1,14 @@
 import * as vscode from 'vscode'
-import {commands, rootStoragePath} from '../constants'
+import {commands} from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {Command} from '../types'
 
 export const copyAliasCommand: Command = {
   name: commands.copyAlias,
-  handler: () => async (customProfile: CustomProfile) => {
+  handler: ({services: {extensionMetaService}}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
 
-    const launchCommand = `code --user-data-dir '${rootStoragePath}/${name}/data' --extensions-dir '${rootStoragePath}/${name}/extensions' -n`
+    const launchCommand = `code --user-data-dir '${extensionMetaService.globalProfilesLocation}/${name}/data' --extensions-dir '${extensionMetaService.globalProfilesLocation}/${name}/extensions' -n`
     // TODO: Make platform independent
     const aliasCommand = `alias ${name}-profile='${launchCommand}'`
 

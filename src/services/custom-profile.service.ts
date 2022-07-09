@@ -7,22 +7,15 @@ import * as constants from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {CommandGeneratorService} from './command-generator.service'
 import {CommandMetaService} from './command-meta.service'
+import {ExtensionMetaService} from './extension-meta.service'
 
 export class CustomProfileService {
-  public constructor(private readonly commandGeneratorService: CommandGeneratorService,
+  public constructor(private readonly extensionMetaService: ExtensionMetaService,
+    private readonly commandGeneratorService: CommandGeneratorService,
     private readonly commandMetaService: CommandMetaService) {}
 
   getAll(): CustomProfile[] {
-    const {rootStoragePath} = constants
-
-    // Check if dir exists
-    const rootExists = fs.existsSync(rootStoragePath)
-
-    if (!rootExists) {
-      fs.mkdirSync(rootStoragePath)
-    }
-
-    const rootItems = fs.readdirSync(rootStoragePath, {withFileTypes: true})
+    const rootItems = fs.readdirSync(this.extensionMetaService.globalProfilesLocation, {withFileTypes: true})
     const profileNames = rootItems.filter(item => item.isDirectory())
       .map(item => item.name)
 
@@ -47,7 +40,7 @@ export class CustomProfileService {
   }
 
   async generateProfileJson(profileName: string): Promise<string> {
-    const userSettingsPath = path.join(constants.rootStoragePath, profileName, 'data', 'User', 'settings.json')
+    const userSettingsPath = path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'data', 'User', 'settings.json')
 
     let userSettingsString = '{}'
     if (fs.existsSync(userSettingsPath)) {
@@ -65,7 +58,7 @@ export class CustomProfileService {
     const codeBin = await this.commandMetaService.getProgramBasedOnMetaAsync('code')
 
     // Get extensions
-    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(constants.rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(constants.rootStoragePath, profileName, 'extensions')}' --list-extensions`)
+    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' --list-extensions`)
     const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand, {shell})
     const extensions = getExtensionsCommandOutput
       .stdout

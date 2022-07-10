@@ -37,12 +37,15 @@ jobs:
       - name: Lint project
         run: npm run lint
       
+      - name: Build VSIX package
+        run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
+
+      - name: Run e2e Tests
+        run: npm run test:e2e
+
       - name: Calculate version
         id: calculateVersion
         run: |
           APP_VERSION=`cat package.json | jq ".version" -M | sed 's/\"//g'`
           echo "::set-output name=AppVersion::$APP_VERSION"
           echo "app version = v$APP_VERSION"
-
-      - name: Build VSIX package
-        run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix

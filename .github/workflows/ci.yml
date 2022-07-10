@@ -40,8 +40,13 @@ jobs:
       - name: Build VSIX package
         run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
 
+      - run: |
+          /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+          echo ">>> Started xvfb"
+        name: Start xvfb
+
       - name: Run e2e Tests
-        run: npm run test:e2e
+        run: npm run test:e2e; exit $?
 
       - name: Calculate version
         id: calculateVersion

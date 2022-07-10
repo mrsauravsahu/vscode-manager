@@ -159,7 +159,8 @@
 		"lint:fix": "xo --fix",
 		"test": "jest",
 		"test:e2e": "node ./out/e2e/run-test.js",
-		"build": "(rm -rf out || true) && mkdir out && cp package.json out && vsce package"
+		"build": "(rm -rf out || true) && mkdir out && cp package.json out && vsce package",
+    "vsce": "vsce"
 	},
 	"devDependencies": {
 		"@types/child-process-promise": "^2.2.1",

@@ -10,7 +10,6 @@ export async function run(): Promise<void> {
   if (jestRunResult.results.success) {
     console.log('Tests completed')
   } else {
-    console.error('Tests failed')
-    process.exit(1)
+    throw new Error('Tests failed')
   }
 }

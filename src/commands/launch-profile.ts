@@ -3,13 +3,13 @@ import * as path from 'path'
 import * as child_process from 'child-process-promise'
 import * as vscode from 'vscode'
 
-import {commands, rootStoragePath} from '../constants'
+import {commands} from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {Command, CustomProfileDetails} from '../types'
 
 export const launchProfileCommand: Command = {
   name: commands.launchProfile,
-  handler: ({services: {customProfileService, commandGeneratorService, commandMetaService}}) => (arg: CustomProfile | {fsPath: string}) => vscode.window.withProgress({
+  handler: ({services: {extensionMetaService, customProfileService, commandGeneratorService, commandMetaService}}) => (arg: CustomProfile | {fsPath: string}) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
     title: 'Launching Custom Profile',
     cancellable: false,
@@ -23,7 +23,7 @@ export const launchProfileCommand: Command = {
         await child_process.exec('code -n')
       } else {
         const {command: launchCommand, shell} = commandGeneratorService.generateCommand(codeBin,
-          `--user-data-dir '${path.join(rootStoragePath, name, 'data')}' --extensions-dir '${path.join(rootStoragePath, name, 'extensions')}' -n`)
+          `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, name, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, name, 'extensions')}' -n`)
         await child_process.exec(launchCommand, {shell})
       }
     } else {
@@ -55,7 +55,7 @@ export const launchProfileCommand: Command = {
         extensions,
       } = profileDetailsJson as CustomProfileDetails
 
-      const profileRootPath = path.join(rootStoragePath, profileName)
+      const profileRootPath = path.join(extensionMetaService.globalProfilesLocation, profileName)
       // TODO: Check if profile exists
       const profileExists = fs.existsSync(profileRootPath)
 
@@ -68,7 +68,7 @@ export const launchProfileCommand: Command = {
         progress.report({increment: 30, message: 'copying Custom Profile user settings...'})
 
         const {command: createDirCommand, shell} = commandGeneratorService.generateCommand('mkdir',
-          path.join(rootStoragePath, profileName, 'data', 'User'), {
+          path.join(extensionMetaService.globalProfilesLocation, profileName, 'data', 'User'), {
             Linux: '-p',
             Darwin: '-p',
             Windows_NT: undefined,
@@ -76,7 +76,7 @@ export const launchProfileCommand: Command = {
         await child_process.exec(createDirCommand, {shell})
 
         await fs.promises.writeFile(
-          path.join(rootStoragePath, profileName, 'data', 'User', 'settings.json'),
+          path.join(extensionMetaService.globalProfilesLocation, profileName, 'data', 'User', 'settings.json'),
           JSON.stringify(userSettings, undefined, 2),
           {encoding: 'utf-8'},
         )
@@ -84,7 +84,7 @@ export const launchProfileCommand: Command = {
         progress.report({increment: 50, message: 'installing extensions...'})
 
         const installExtensionPromises = extensions.map(async extension => {
-          const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(rootStoragePath, profileName, 'extensions')}' --install-extension ${extension}`)
+          const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' --install-extension ${extension}`)
 
           return child_process.exec(extensionInstallCommand, {shell})
         })
@@ -92,7 +92,7 @@ export const launchProfileCommand: Command = {
         await Promise.all(installExtensionPromises)
 
         const launchCommand
-          = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(rootStoragePath, profileName, 'extensions')}' -n`)
+          = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' -n`)
 
         await child_process.exec(launchCommand.command, {shell: launchCommand.shell})
       } else {
@@ -100,7 +100,7 @@ export const launchProfileCommand: Command = {
 
         const profileDetailsJsonString = JSON.stringify(profileDetailsJson, undefined, 2)
         if (profileDetailsJsonString === alreadyPresentJsonString) {
-          const launchCommand = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(rootStoragePath, profileName, 'data')}' --extensions-dir '${path.join(rootStoragePath, profileName, 'extensions')}' -n`)
+          const launchCommand = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' -n`)
           await child_process.exec(launchCommand.command, {shell: launchCommand.shell})
         } else {
           await vscode.window.showInformationMessage('Please use a different name. Another profile with the same name already exists, but with different settings.')

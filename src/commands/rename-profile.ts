@@ -2,13 +2,13 @@ import * as child_process from 'child_process'
 import * as path from 'path'
 import * as vscode from 'vscode'
 
-import {commands, rootStoragePath} from '../constants'
+import {commands} from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {Command} from '../types'
 
 export const renameProfileCommand: Command = {
   name: commands.renameProfile,
-  handler: ({services: {commandGeneratorService}}) => async (customProfile: CustomProfile) => {
+  handler: ({services: {extensionMetaService, commandGeneratorService}}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
 
     const value = await vscode.window.showInputBox({
@@ -17,8 +17,8 @@ export const renameProfileCommand: Command = {
       value: name,
     })
 
-    const oldProfilePath = path.join(rootStoragePath, name)
-    const newProfilePath = path.join(rootStoragePath, value ?? name)
+    const oldProfilePath = path.join(extensionMetaService.globalProfilesLocation, name)
+    const newProfilePath = path.join(extensionMetaService.globalProfilesLocation, value ?? name)
 
     const {command: moveProfileCommand, shell} = commandGeneratorService.generateCommand(
       'mv', `${oldProfilePath} ${newProfilePath}`)

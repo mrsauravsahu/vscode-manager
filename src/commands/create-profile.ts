@@ -4,18 +4,18 @@ import * as process from 'child_process'
 import {uniqueNamesGenerator, adjectives, animals} from 'unique-names-generator'
 import * as vscode from 'vscode'
 
-import {commands, rootStoragePath, strings} from '../constants'
+import {commands, strings} from '../constants'
 import type {Command} from '../types'
 
 export const createProfileCommand: Command = {
   name: commands.createProfile,
-  handler: ({provider, services: {customProfileService, commandGeneratorService}, treeView}) => async () => {
+  handler: ({provider, services: {extensionMetaService, customProfileService, commandGeneratorService}, treeView}) => async () => {
     const newProfileName = uniqueNamesGenerator({
       dictionaries: [adjectives, animals],
       separator: '-',
     })
 
-    const newProfilePath = path.join(rootStoragePath, newProfileName)
+    const newProfilePath = path.join(extensionMetaService.globalProfilesLocation, newProfileName)
 
     process.execSync(`mkdir "${newProfilePath}"`)
     const {command: userDataPathCommand, shell} = commandGeneratorService.generateCommand('mkdir', `"${path.join(newProfilePath, 'data', 'User')}"`, {

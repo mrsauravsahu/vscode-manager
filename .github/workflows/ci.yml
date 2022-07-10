@@ -40,12 +40,8 @@ jobs:
       - name: Build VSIX package
         run: npm run build -- -o custom-profiles-for-vscode.v${{ steps.calculateVersion.outputs.AppVersion }}.vsix
 
-      - name: Run E2E tests
-        run: |
-          Xvfb :99 &
-          export DISPLAY=:99
-          export DBUS_SESSION_BUS_ADDRESS="/run/user/${UID}/bus"
-          npm run test:e2e
+      - name: Run unit tests
+        run: npm t
 
       - name: Calculate version
         id: calculateVersion

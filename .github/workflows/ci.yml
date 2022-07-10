@@ -44,7 +44,7 @@ jobs:
         run: |
           Xvfb :99 &
           export DISPLAY=:99
-          export $(dbus-launch)
+          export DBUS_SESSION_BUS_ADDRESS="/run/user/${UID}/bus"
           npm run test:e2e
 
       - name: Calculate version

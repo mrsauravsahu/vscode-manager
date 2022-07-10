@@ -43,8 +43,8 @@ jobs:
       - name: Run E2E tests
         run: |
           Xvfb :99 &
-          export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
           export DISPLAY=:99
+          export $(dbus-launch)
           npm run test:e2e
 
       - name: Calculate version

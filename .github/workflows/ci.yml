@@ -42,11 +42,12 @@ jobs:
 
       - run: |
           /usr/bin/Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-          echo ">>> Started xvfb"
+          sleep 1
+          ps aux | grep Xvfb --color=always | grep -v grep
         name: Start xvfb
 
       - name: Run e2e Tests
-        run: npm run test:e2e; exit $?
+        run: DISPLAY=:99.0 npm run test:e2e; exit $?
 
       - name: Calculate version
         id: calculateVersion

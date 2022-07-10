@@ -26,7 +26,7 @@
 		"onView:customProfiles",
 		"workspaceContains:**/.vscode/profile.json"
 	],
-	"main": "./out/extension.js",
+	"main": "./out/src/extension.js",
 	"contributes": {
 		"menus": {
 			"explorer/context": [
@@ -159,8 +159,7 @@
 		"lint:fix": "xo --fix",
 		"test": "jest",
 		"test:e2e": "node ./out/e2e/run-test.js",
-		"build": "(rm -rf out || true) && mkdir out && cp package.json out && vsce package",
-		"vsce": "vsce"
+		"build": "(rm -rf out || true) && mkdir out && cp package.json out && vsce package"
 	},
 	"devDependencies": {
 		"@types/child-process-promise": "^2.2.1",

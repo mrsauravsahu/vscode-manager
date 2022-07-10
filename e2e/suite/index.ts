@@ -11,5 +11,6 @@ export async function run(): Promise<void> {
     console.log('Tests completed')
   } else {
     console.error('Tests failed')
+    process.exit(1)
   }
 }

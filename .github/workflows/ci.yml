@@ -43,7 +43,7 @@ jobs:
       - name: Run E2E tests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: npm run test:e2e; exit $?
+          run: npm run test:e2e
 
       - name: Calculate version
         id: calculateVersion

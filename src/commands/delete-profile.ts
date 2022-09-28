@@ -19,12 +19,12 @@ export const deleteProfileCommand: Command = {
 
     if (confirmation === 'Yes') {
       const profilePath = path.join(extensionMetaService.globalProfilesLocation, name)
-      const { command: profileDeleteCommand, shell } = commandGeneratorService.generateCommand('mkdir', `"${path.join(profilePath, 'data', 'User')}"`, {
+      const {command: profileDeleteCommand, shell} = commandGeneratorService.generateCommand('mkdir', `"${path.join(profilePath, 'data', 'User')}"`, {
         Linux: '-r',
         Darwin: '-r',
-        Windows_NT: '-Recurse'
+        Windows_NT: '-Recurse',
       })
-      process.execSync(profileDeleteCommand,{shell})
+      process.execSync(profileDeleteCommand, {shell})
       provider.refresh()
 
       await vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)

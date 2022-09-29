@@ -1,4 +1,8 @@
 # Changelog
+## **v2.3.1**
+Chore: Run vulnerability fixes with npm audit
+## **v2.3.0**
+Fix: Delete profile command fails on Windows
 ## **v2.1.2**
 Fix: NPM Audit fixes and bump Node.js to LTS (16.13.0)
 ## **v2.1.1**

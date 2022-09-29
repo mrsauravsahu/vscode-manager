@@ -1,4 +1,4 @@
-import * as child_process from 'child_process'
+import * as process from 'child_process'
 import * as path from 'path'
 import * as vscode from 'vscode'
 
@@ -8,7 +8,7 @@ import {CustomProfile} from '../models/custom-profile'
 
 export const deleteProfileCommand: Command = {
   name: commands.deleteProfile,
-  handler: ({services: {extensionMetaService, customProfileService}, treeView, provider}) => async (customProfile: CustomProfile) => {
+  handler: ({services: {extensionMetaService, customProfileService, commandGeneratorService}, treeView, provider}) => async (customProfile: CustomProfile) => {
     const {name} = customProfile
     if (name === profiles.default) {
       await vscode.window.showErrorMessage('Cannot delete the default profile')
@@ -19,7 +19,12 @@ export const deleteProfileCommand: Command = {
 
     if (confirmation === 'Yes') {
       const profilePath = path.join(extensionMetaService.globalProfilesLocation, name)
-      child_process.execSync(`rm -r ${profilePath}`)
+      const {command: profileDeleteCommand, shell} = commandGeneratorService.generateCommand('mkdir', `"${path.join(profilePath, 'data', 'User')}"`, {
+        Linux: '-r',
+        Darwin: '-r',
+        Windows_NT: '-Recurse',
+      })
+      process.execSync(profileDeleteCommand, {shell})
       provider.refresh()
 
       await vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)

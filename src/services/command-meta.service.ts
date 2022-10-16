@@ -1,13 +1,17 @@
 import * as vscode from 'vscode'
+import * as path from 'path'
 
 export class CommandMetaService {
+  /**
+   * @param programName Name of program (code/code-insiders)
+   * @returns Full path to the executable, if it is code/code-insiders
+   */
   async getProgramBasedOnMetaAsync(programName: string): Promise<string> {
     if (programName === 'code') {
       if (vscode.env.appName === 'Visual Studio Code - Insiders') {
-        return 'code-insiders'
+        return `'${path.join(vscode.env.appRoot, 'bin', 'code-insiders')}'`
       }
-
-      return 'code'
+      return `'${path.join(vscode.env.appRoot, 'bin', 'code')}'`
     }
 
     return programName

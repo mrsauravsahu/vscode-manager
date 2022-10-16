@@ -56,9 +56,7 @@ export class CommandGeneratorService {
       programWithExecChanges = vscode.env.appName === 'Visual Studio Code - Insiders' ? path.join(execPrefixPath, 'code-insiders') : path.join(execPrefixPath, 'code')
     }
 
-    if (this.osType === 'Windows_NT') {
-      programWithExecChanges = `& "${programWithExecChanges}"`
-    }
+    programWithExecChanges = this.osType === 'Windows_NT' ? `& "${programWithExecChanges}"` : `"${programWithExecChanges}"`
 
     return programWithExecChanges
   }

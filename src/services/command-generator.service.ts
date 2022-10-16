@@ -1,4 +1,6 @@
 import * as os from 'os'
+import * as path from 'path'
+import * as vscode from 'vscode'
 import type {OSType} from '../types'
 
 export type GeneratedCommand = {
@@ -25,9 +27,37 @@ export class CommandGeneratorService {
   ): GeneratedCommand {
     const shell: string = this.shellRecords[this.osType]
 
+    const customizedProgramForOS = this.customizeProgram(program)
+
     return {
-      command: `${program} ${extraArgs ? extraArgs[this.osType] ?? '' : ''} ${args ?? ''}`,
+      command: `${customizedProgramForOS} ${extraArgs ? extraArgs[this.osType] ?? '' : ''} ${args ?? ''}`,
       shell,
     }
+  }
+
+  public customizeProgram(programName: string): string {
+    let programWithExecChanges = ''
+
+    if (programName !== 'code') {
+      programWithExecChanges = programName
+    } else {
+      let execPrefixPath = ''
+
+      switch (this.osType) {
+        case 'Linux':
+        case 'Darwin':
+          execPrefixPath = path.join(vscode.env.appRoot, 'bin')
+          break
+        default:
+          execPrefixPath = path.resolve(vscode.env.appRoot, '..', '..', 'bin')
+          break
+      }
+
+      programWithExecChanges = vscode.env.appName === 'Visual Studio Code - Insiders' ? path.join(execPrefixPath, 'code-insiders') : path.join(execPrefixPath, 'code')
+    }
+
+    programWithExecChanges = this.osType === 'Windows_NT' ? `& "${programWithExecChanges}"` : `"${programWithExecChanges}"`
+
+    return programWithExecChanges
   }
 }

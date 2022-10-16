@@ -9,12 +9,11 @@ import {Command, CustomProfileDetails} from '../types'
 
 export const launchProfileCommand: Command = {
   name: commands.launchProfile,
-  handler: ({services: {extensionMetaService, customProfileService, commandGeneratorService, commandMetaService}}) => (arg: CustomProfile | {fsPath: string}) => vscode.window.withProgress({
+  handler: ({services: {extensionMetaService, customProfileService, commandGeneratorService}}) => (arg: CustomProfile | {fsPath: string}) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
     title: 'Launching Custom Profile',
     cancellable: false,
   }, async progress => {
-    const codeBin = await commandMetaService.getProgramBasedOnMetaAsync('code')
     if (arg instanceof CustomProfile) {
       // Custom profile launch
       const {name} = arg
@@ -22,7 +21,7 @@ export const launchProfileCommand: Command = {
       if (name === 'default') {
         await child_process.exec('code -n')
       } else {
-        const {command: launchCommand, shell} = commandGeneratorService.generateCommand(codeBin,
+        const {command: launchCommand, shell} = commandGeneratorService.generateCommand('code',
           `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, name, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, name, 'extensions')}' -n`)
         await child_process.exec(launchCommand, {shell})
       }
@@ -84,7 +83,7 @@ export const launchProfileCommand: Command = {
         progress.report({increment: 50, message: 'installing extensions...'})
 
         const installExtensionPromises = extensions.map(async extension => {
-          const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' --install-extension ${extension}`)
+          const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' --install-extension ${extension}`)
 
           return child_process.exec(extensionInstallCommand, {shell})
         })
@@ -92,7 +91,7 @@ export const launchProfileCommand: Command = {
         await Promise.all(installExtensionPromises)
 
         const launchCommand
-          = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' -n`)
+          = commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' -n`)
 
         await child_process.exec(launchCommand.command, {shell: launchCommand.shell})
       } else {
@@ -100,7 +99,7 @@ export const launchProfileCommand: Command = {
 
         const profileDetailsJsonString = JSON.stringify(profileDetailsJson, undefined, 2)
         if (profileDetailsJsonString === alreadyPresentJsonString) {
-          const launchCommand = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' -n`)
+          const launchCommand = commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' -n`)
           await child_process.exec(launchCommand.command, {shell: launchCommand.shell})
         } else {
           await vscode.window.showInformationMessage('Please use a different name. Another profile with the same name already exists, but with different settings.')

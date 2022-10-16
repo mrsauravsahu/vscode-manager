@@ -3,7 +3,6 @@ import * as vscode from 'vscode'
 import {CustomProfilesProvider} from './custom-profile-tree'
 import {CustomProfile} from './models/custom-profile'
 import {CommandGeneratorService} from './services/command-generator.service'
-import {CommandMetaService} from './services/command-meta.service'
 import {CustomProfileService} from './services/custom-profile.service'
 import {FeaturedProfileService} from './services/featured-profile.service'
 import {ExtensionMetaService} from './services/extension-meta.service'
@@ -23,7 +22,6 @@ export type HandlerArgs = {
     customProfileService: CustomProfileService;
     featuredProfileService: FeaturedProfileService;
     commandGeneratorService: CommandGeneratorService;
-    commandMetaService: CommandMetaService;
   };
 }
 

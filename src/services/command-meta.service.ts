@@ -1,5 +1,5 @@
-import * as vscode from 'vscode'
 import * as path from 'path'
+import * as vscode from 'vscode'
 
 export class CommandMetaService {
   /**
@@ -11,6 +11,7 @@ export class CommandMetaService {
       if (vscode.env.appName === 'Visual Studio Code - Insiders') {
         return `'${path.join(vscode.env.appRoot, 'bin', 'code-insiders')}'`
       }
+
       return `'${path.join(vscode.env.appRoot, 'bin', 'code')}'`
     }
 

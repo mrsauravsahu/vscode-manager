@@ -10,7 +10,6 @@ import {FeaturedProfileService} from './services/featured-profile.service'
 import {FeaturedProfilesProvider} from './providers/featured-profiles.provider'
 import {FeaturedProfileContentProvider} from './providers/featured-profile-content.provider'
 import {CommandGeneratorService} from './services/command-generator.service'
-import {CommandMetaService} from './services/command-meta.service'
 import {ExtensionMetaService} from './services/extension-meta.service'
 import {GlobalStorageLocationCheckService} from './services/global-storage-location-check.service'
 
@@ -24,9 +23,8 @@ export async function activate(context: vscode.ExtensionContext) {
   await (new GlobalStorageLocationCheckService(context, extensionMetaService)
     .checkProfilesLocationAsync())
 
-  const commandMetaService = new CommandMetaService()
   const commandGeneratorService = new CommandGeneratorService()
-  const customProfileService = new CustomProfileService(extensionMetaService, commandGeneratorService, commandMetaService)
+  const customProfileService = new CustomProfileService(extensionMetaService, commandGeneratorService)
   const customProfilesProvider = new CustomProfilesProvider(context, customProfileService)
 
   vscode.window.registerTreeDataProvider('customProfiles', customProfilesProvider)
@@ -79,7 +77,6 @@ export async function activate(context: vscode.ExtensionContext) {
           customProfileService,
           featuredProfileService,
           commandGeneratorService,
-          commandMetaService,
         },
         treeView: customProfilesExplorer,
       }),

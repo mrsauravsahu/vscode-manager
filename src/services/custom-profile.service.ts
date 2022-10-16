@@ -6,13 +6,11 @@ import * as json5 from 'json5'
 import * as constants from '../constants'
 import {CustomProfile} from '../models/custom-profile'
 import {CommandGeneratorService} from './command-generator.service'
-import {CommandMetaService} from './command-meta.service'
 import {ExtensionMetaService} from './extension-meta.service'
 
 export class CustomProfileService {
   public constructor(private readonly extensionMetaService: ExtensionMetaService,
-    private readonly commandGeneratorService: CommandGeneratorService,
-    private readonly commandMetaService: CommandMetaService) {}
+    private readonly commandGeneratorService: CommandGeneratorService) {}
 
   getAll(): CustomProfile[] {
     const rootItems = fs.readdirSync(this.extensionMetaService.globalProfilesLocation, {withFileTypes: true})
@@ -55,10 +53,8 @@ export class CustomProfileService {
       await vscode.window.showInformationMessage('The profile contains invalid user settings.')
     }
 
-    const codeBin = await this.commandMetaService.getProgramBasedOnMetaAsync('code')
-
     // Get extensions
-    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' --list-extensions`)
+    const {command: getExtensionsCommand, shell} = this.commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'data')}' --extensions-dir '${path.join(this.extensionMetaService.globalProfilesLocation, profileName, 'extensions')}' --list-extensions`)
     const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand, {shell})
     const extensions = getExtensionsCommandOutput
       .stdout

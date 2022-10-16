@@ -9,7 +9,7 @@ import {Command} from '../types'
 
 export const cloneProfileCommand: Command = {
   name: commands.cloneProfile,
-  handler: ({provider, services: {extensionMetaService, commandGeneratorService, commandMetaService}}) => async (customProfile: CustomProfile) => vscode.window.withProgress({
+  handler: ({provider, services: {extensionMetaService, commandGeneratorService}}) => async (customProfile: CustomProfile) => vscode.window.withProgress({
     location: vscode.ProgressLocation.Notification,
     title: 'Clone',
     cancellable: false,
@@ -30,10 +30,8 @@ export const cloneProfileCommand: Command = {
     await fs.promises.copyFile(path.join(originalProfilePath, 'data', 'User', 'settings.json'),
       path.join(clonedProfilePath, 'data', 'User', 'settings.json'))
 
-    const codeBin = await commandMetaService.getProgramBasedOnMetaAsync('code')
-
     // Get extensions
-    const {command: getExtensionsCommand, shell} = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(originalProfilePath, 'data')}' --extensions-dir '${path.join(originalProfilePath, 'extensions')}' --list-extensions`)
+    const {command: getExtensionsCommand, shell} = commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(originalProfilePath, 'data')}' --extensions-dir '${path.join(originalProfilePath, 'extensions')}' --list-extensions`)
 
     progress.report({increment: 10, message: 'Retrieving extensions from old profile...'})
     const getExtensionsCommandOutput = await child_process.exec(getExtensionsCommand, {shell})
@@ -52,7 +50,7 @@ export const cloneProfileCommand: Command = {
     }) ?? []
 
     const installExtensionPromises = selectedExtensions.map(async extension => {
-      const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand(codeBin, `--user-data-dir '${path.join(clonedProfilePath, 'data')}' --extensions-dir '${path.join(clonedProfilePath, 'extensions')}' --install-extension ${extension}`)
+      const {command: extensionInstallCommand, shell} = commandGeneratorService.generateCommand('code', `--user-data-dir '${path.join(clonedProfilePath, 'data')}' --extensions-dir '${path.join(clonedProfilePath, 'extensions')}' --install-extension ${extension}`)
 
       progress.report({
         increment: 50,

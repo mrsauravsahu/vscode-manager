@@ -1,5 +1,5 @@
-import * as process from 'child_process'
 import * as path from 'path'
+import * as child_process from 'child-process-promise'
 import * as vscode from 'vscode'
 
 import {commands, profiles, strings} from '../constants'
@@ -19,12 +19,12 @@ export const deleteProfileCommand: Command = {
 
     if (confirmation === 'Yes') {
       const profilePath = path.join(extensionMetaService.globalProfilesLocation, name)
-      const {command: profileDeleteCommand, shell} = commandGeneratorService.generateCommand('mkdir', `"${path.join(profilePath, 'data', 'User')}"`, {
+      const {command: profileDeleteCommand, shell} = commandGeneratorService.generateCommand('rm', `"${path.join(profilePath)}"`, {
         Linux: '-r',
         Darwin: '-r',
         Windows_NT: '-Recurse',
       })
-      process.execSync(profileDeleteCommand, {shell})
+      await child_process.exec(profileDeleteCommand, {shell})
       provider.refresh()
 
       await vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)

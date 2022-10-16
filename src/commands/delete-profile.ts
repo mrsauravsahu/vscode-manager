@@ -1,5 +1,5 @@
-import * as child_process from 'child-process-promise'
 import * as path from 'path'
+import * as child_process from 'child-process-promise'
 import * as vscode from 'vscode'
 
 import {commands, profiles, strings} from '../constants'
@@ -24,7 +24,7 @@ export const deleteProfileCommand: Command = {
         Darwin: '-r',
         Windows_NT: '-Recurse',
       })
-      await child_process.exec(profileDeleteCommand, { shell })
+      await child_process.exec(profileDeleteCommand, {shell})
       provider.refresh()
 
       await vscode.window.showInformationMessage(`Successfully deleted custom profile: '${name}'`)

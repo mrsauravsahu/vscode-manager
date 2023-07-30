@@ -4,7 +4,7 @@
 	"publisher": "mrsauravsahu",
 	"icon": "resources/icon.png",
 	"description": "Manage VSCode custom profiles with isolated settings and extensions",
-	"version": "2.3.2",
+	"version": "2.3.3",
 	"repository": {
 		"url": "https://github.com/mrsauravsahu/vscode-manager",
 		"type": "git"
@@ -31,8 +31,8 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"when": "resourceLangId == json && resourceFilename =~ /profile.json$/ && resourceDirname =~ /.vscode$/",
-					"command": "vscode-manager.commands.launchProfile",
+					"when": "resourceFilename =~ /profile.json$/ && resourceDirname =~ /.vscode$/",
+					"command": "vscode-manager.commands.launchProfileJson",
 					"group": "customProfiles"
 				}
 			],
@@ -77,6 +77,10 @@
 			]
 		},
 		"commands": [
+			{
+				"command": "vscode-manager.commands.launchProfileJson",
+				"title": "Launch Custom Profile"
+			},
 			{
 				"command": "vscode-manager.commands.launchProfile",
 				"title": "Launch Custom Profile",

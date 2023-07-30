@@ -13,7 +13,6 @@
     "extensions": [
         "dbaeumer.vscode-eslint",
         "Gruntfuggly.todo-tree",
-        "jolaleye.horizon-theme-vscode",
         "mrsauravsahu.vscode-manager",
         "PKief.material-icon-theme"
     ]

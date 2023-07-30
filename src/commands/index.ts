@@ -6,6 +6,7 @@ import {refreshProfilesCommand} from './refresh-profiles'
 import {renameProfileCommand} from './rename-profile'
 import {selectProfileCommand} from './select-profile'
 import {launchProfileCommand} from './launch-profile'
+import {launchProfileJsonCommand} from './launch-profile-json'
 import {selectFeaturedProfileCommand} from './select-featured-profile'
 import {requestFeaturedProfileCommand} from './request-featured-profile'
 
@@ -18,6 +19,7 @@ export const commands = [
   refreshProfilesCommand,
   selectProfileCommand,
   launchProfileCommand,
+  launchProfileJsonCommand,
   selectFeaturedProfileCommand,
   requestFeaturedProfileCommand,
 ]

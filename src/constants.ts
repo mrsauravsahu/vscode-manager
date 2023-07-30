@@ -7,6 +7,7 @@ export const rootStoragePath = path.join(os.homedir(), '.config', app)
 
 export const commands = {
   launchProfile: `${app}.commands.launchProfile`,
+  launchProfileJson: `${app}.commands.launchProfileJson`,
   selectProfile: `${app}.commands.selectProfile`,
   selectFeaturedProfile: `${app}.commands.selectFeaturedProfile`,
   createProfile: `${app}.commands.createProfile`,
